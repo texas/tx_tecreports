@@ -27,11 +27,12 @@ for dirpath, dirnames, filenames in os.walk('tx_tecreports'):
 
 setup(
     name='tx_tecreports',
-    version='0.0.0',
+    version='0.1.0',
     description='Package for dealing with TEC reports',
     author='Tribune Tech',
     author_email='tech@texastribune.org',
     url='https://github.com/texas/tx_tecreports/',
+    install_requires=open("./requirements.txt").read().split("\n"),
     packages=packages,
     package_data={'tx_tecreports': data_files},
     classifiers=[
