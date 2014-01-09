@@ -86,8 +86,4 @@ That's more like it!
 
 .. _Texas Ethics Commission: http://www.ethics.state.tx.us/
 .. _filer page: http://www.ethics.state.tx.us/php/filer.php?acct=00062095COH
-
-
 .. _pip: http://www.pip-installer.org/en/latest/
-.. _Texas Ethics Commission: http://www.ethics.state.tx.us/
-.. _her page: http://www.ethics.state.tx.us/php/filer.php?acct=00062095COH
