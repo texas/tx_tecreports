@@ -32,14 +32,14 @@ example, you could grab Wend Davis' first special session report
 You can find that ID by visiting her `filer page`_ on the
 `Texas Ethics Commission`_ website.
 
-.. _code:: python
+.. code:: python
 
     >>> report = get_report(581606)
 
 Now you can interact with the various data in the cover element via
 ``report.cover``.
 
-.. _code:: python
+.. code:: python
 
     >>> report.cover.type_of_filing
     'COH-SS'
@@ -51,7 +51,7 @@ Now you can interact with the various data in the cover element via
 You can verify that this is her personal filing by seeing that
 the filer_type is a `IND`:
 
-.. _code:: python
+.. code:: python
 
     >>> report.cover.filer.filer_type
     'IND'
@@ -61,7 +61,7 @@ of all of the contributions received in this report.  For example,
 you can see how many contributions where made by looking at its
 length:
 
-.. _code:: python
+.. code:: python
 
     >>> len(report.receipts)
     1240
@@ -69,7 +69,7 @@ length:
 You can create a list of all of the contributions on any given day
 with by looking at the ``contribution.date`` like this:
 
-.. _code:: python
+.. code:: python
 
     >>> len([a for a in report.receipts if a.contribution.date == report.cover.from_date])
     0
@@ -77,7 +77,7 @@ with by looking at the ``contribution.date`` like this:
 Oops, looks like she didn't have any contributions on the first day
 of that report.  Let's change it to the last day:
 
-.. _code:: python
+.. code:: python
 
     >>> len([a for a in report.receipts if a.contribution.date == report.cover.through_date])
     1187
