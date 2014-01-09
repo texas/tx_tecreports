@@ -1,10 +1,16 @@
+# Try to use Python3 here
+try:
+    from io import StringIO
+except ImportError:
+    from StringIO import StringIO
+
+
+# Note: csvkit does not support Python3
+from csvkit.unicsv import UnicodeCSVReader
+
+from . import exceptions
 from . import utils
-
-
-def type_of_boolean(type_of):
-    def inner(self):
-        return self.type_of == type_of
-    return property(inner)
+from .helpers import require_initialization, type_of_boolean
 
 
 class Election(object):
@@ -125,4 +131,63 @@ class Receipt(object):
             return
         if self.report is None:
             raise Exception('Unable to locate parent (no report present)')
-        return self.report.find(self.parent_id)
+        return self.report.find(id=self.parent_id)
+
+
+class Report(object):
+    """
+
+    .. _todo:: TEST!!
+    """
+    def __init__(self, raw_report=None):
+        self.raw_report = raw_report
+        self._initialized = False
+        if self.raw_report is not None:
+            self.parse()
+
+    def parse(self):
+        self.buckets = {}
+        self._receipts = None
+        self._cover = None
+        for line in self.raw_report.iter_lines(decode_unicode=True):
+            line_type = line.split(',', 1)[0]
+            if line_type not in self.buckets:
+                self.buckets[line_type] = []
+            self.buckets[line_type].append(line)
+        self._initialized = True
+
+    @require_initialization
+    def cover(self):
+        data = self.buckets['CVR'][0].split(',')
+        return Cover(data)
+
+    @require_initialization
+    def receipts(self):
+        if self._receipts is None:
+            self._receipts = []
+            data = StringIO(u"\n".join(self.buckets['RCPT']))
+            for row in UnicodeCSVReader(data):
+                self._receipts.append(Receipt(row, self))
+        return self._receipts
+
+    def search(self, **kwargs):
+        for r in self.receipts:
+            for attr, value in kwargs.items():
+                if getattr(r, attr) == value:
+                    yield r
+
+    def find(self, **kwargs):
+        return [a for a in self.search(**kwargs)]
+
+    def get(self, **kwargs):
+        result_set = self.search(**kwargs)
+        result = result_set.next()
+        try:
+            result_set.next()
+            raise exceptions.MultipleFound
+        except StopIteration:
+            return result
+
+    @property
+    def total_receipts(self):
+        return sum([a.contribution.amount for a in self.receipts])
