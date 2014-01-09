@@ -32,6 +32,7 @@ setup(
     author='Tribune Tech',
     author_email='tech@texastribune.org',
     url='https://github.com/texas/tx_tecreports/',
+    install_requires=open("./requirements.txt").read().split("\n"),
     packages=packages,
     package_data={'tx_tecreports': data_files},
     classifiers=[
