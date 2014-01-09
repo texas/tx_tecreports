@@ -4,9 +4,7 @@ try:
 except ImportError:
     from StringIO import StringIO
 
-
-# Note: csvkit does not support Python3
-from csvkit.unicsv import UnicodeCSVReader
+from unicsv import UnicodeCSVReader
 
 from . import exceptions
 from . import utils
