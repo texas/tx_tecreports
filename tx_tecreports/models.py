@@ -74,6 +74,10 @@ class Contributor(object):
         self.state = state
         self.zipcode = zipcode
 
+    @property
+    def full_name(self):
+        return '{0} {1}'.format(self.first_name, self.last_name).strip()
+
 
 class Contribution(object):
     def __init__(self, date, amount, description):
