@@ -19,18 +19,6 @@ def get_report(report_id):
     return models.Report(raw_report=raw_report)
 
 
-def parse_num_from_string(s):
-    """
-    Parses out first integer from a string, only works on integers that stand alone
-
-    Returns ``None`` on strings without an integer
-    """
-    try:
-        return [int(i) for i in s.split() if i.isdigit()][0]
-    except IndexError:
-        return None
-
-
 def compile_filing_data(filing_cell):
     data = [x.strip() for x in filing_cell.html().split('<br />')]
 
@@ -39,7 +27,7 @@ def compile_filing_data(filing_cell):
 
     return {
         'filer_name': data[0].split(' - ')[0],
-        'report_id': parse_num_from_string(data[1]),
+        'report_id': utils.parse_num_from_string(data[1]),
         'is_correction': 'Corrected Report' in data[1],
         'report_type': pq(data[2]).find('b').text(),
         'report_due': utils.string_to_date(report_due, format='%B %d, %Y'),

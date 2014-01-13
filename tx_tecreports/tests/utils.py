@@ -22,3 +22,24 @@ class string_to_date_TestCase(unittest.TestCase):
     def test_raises_TypeError_with_strict(self):
         with self.assertRaises(TypeError):
             utils.string_to_date(None, strict=True)
+
+
+class parse_num_from_string_TestCase(unittest.TestCase):
+    def test_returns_none_if_no_string_is_present(self):
+        example = "Report #: Foobar"
+        self.assertEqual(None, utils.parse_num_from_string(example))
+
+    def test_returns_number_when_present(self):
+        report_number = 584598
+        example = "Report #: %d" % report_number
+        self.assertEqual(report_number, utils.parse_num_from_string(example))
+
+    def test_returns_number_when_present_with_trailing_space(self):
+        report_number = 584598
+        example = "Report #: %d " % report_number
+        self.assertEqual(report_number, utils.parse_num_from_string(example))
+
+    def test_returns_number_for_corrected_report(self):
+        example = "Report #: 449380 - Corrected Report"
+        actual = utils.parse_num_from_string(example)
+        self.assertEqual(449380, actual)
