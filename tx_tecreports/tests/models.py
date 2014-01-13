@@ -340,3 +340,15 @@ class UninitializedReportTestCase(unittest.TestCase):
     def test_total_receipts_fails_when_not_parsed(self):
         with self.assertRaises(exceptions.NotYetInitialized):
             self.report.total_receipts
+
+
+class UninitializedFilingListTestCase(unittest.TestCase):
+    def setUp(self):
+        self.filing = models.FilingList()
+
+    def test_has_length_of_zero_by_default(self):
+        self.assertEqual(0, len(self.filing))
+
+    def test_raises_exception(self):
+        with self.assertRaises(exceptions.UnableToInitialize):
+            self.filing[0]

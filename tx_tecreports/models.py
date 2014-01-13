@@ -3,7 +3,9 @@ try:
     from io import StringIO
 except ImportError:
     from StringIO import StringIO
+import re
 
+from pyquery import PyQuery as pq
 from unicsv import UnicodeCSVReader
 
 from . import exceptions
@@ -185,3 +187,48 @@ class Report(object):
     @property
     def total_receipts(self):
         return sum([a.contribution.amount for a in self.receipts])
+
+
+class FilingList(list):
+    def __init__(self, raw_filing_list=None):
+        self.raw_filing_list = raw_filing_list
+        self._filings = []
+        self.parse()
+
+    def __getitem__(self, key):
+        if not self._filings:
+            self.parse()
+        if not self._filings:
+            raise exceptions.UnableToInitialize
+        return self._filings[key]
+
+    def parse(self):
+        if self.raw_filing_list is None:
+            return
+
+        p = pq(self.raw_filing_list.text)
+        rows = p('table[bordercolor="#CCCCCC"] tr')
+
+        for row in rows.items():
+            self._filings.append(self.compile_filing_data(row('td').eq(0)))
+
+    def compile_filing_data(self, filing_cell):
+        data = [x.strip() for x in filing_cell.html().split('<br />')]
+
+        report_due = re.sub(r'(st|nd|rd|th),', ',', data[3].split(':')[1].strip())
+        report_filed = re.sub(r'(st|nd|rd|th),', ',', data[4].split(':')[1].strip())
+
+        return {
+            'filer_name': data[0].split(' - ')[0],
+            'report_id': utils.parse_num_from_string(data[1]),
+            'is_correction': 'Corrected Report' in data[1],
+            'report_type': pq(data[2]).find('b').text(),
+            'report_due': utils.string_to_date(report_due, format='%B %d, %Y'),
+            'report_filed': utils.string_to_date(report_filed, format='%B %d, %Y'),
+            'filing_method': data[5].split(':')[1].strip(),
+        }
+
+
+class Filing(object):
+    def __init__(self):
+        pass
