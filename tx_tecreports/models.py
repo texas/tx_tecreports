@@ -8,6 +8,7 @@ import re
 from pyquery import PyQuery as pq
 from unicsv import UnicodeCSVReader
 
+import fetcher
 from . import exceptions
 from . import utils
 from .helpers import require_initialization, type_of_boolean
@@ -194,6 +195,7 @@ class FilingList(list):
         self.raw_filing_list = raw_filing_list
         self._filings = []
         self.parse()
+        self.extend(self._filings)
 
     def __getitem__(self, key):
         if not self._filings:
@@ -218,7 +220,7 @@ class FilingList(list):
         report_due = re.sub(r'(st|nd|rd|th),', ',', data[3].split(':')[1].strip())
         report_filed = re.sub(r'(st|nd|rd|th),', ',', data[4].split(':')[1].strip())
 
-        return {
+        return Filing({
             'filer_name': data[0].split(' - ')[0],
             'report_id': utils.parse_num_from_string(data[1]),
             'is_correction': 'Corrected Report' in data[1],
@@ -226,9 +228,25 @@ class FilingList(list):
             'report_due': utils.string_to_date(report_due, format='%B %d, %Y'),
             'report_filed': utils.string_to_date(report_filed, format='%B %d, %Y'),
             'filing_method': data[5].split(':')[1].strip(),
-        }
+        })
 
 
 class Filing(object):
-    def __init__(self):
-        pass
+    def __init__(self, raw_filing_data):
+        self.raw_filing_data = raw_filing_data
+
+        self.filer_name = raw_filing_data['filer_name']
+        self.report_id = raw_filing_data['report_id']
+        self.is_correction = raw_filing_data['is_correction']
+        self.report_type = raw_filing_data['report_type']
+        self.report_due = raw_filing_data['report_due']
+        self.report_filed = raw_filing_data['report_filed']
+        self.filing_method = raw_filing_data['filing_method']
+
+        self._report = None
+
+    @property
+    def report(self):
+        if not self._report:
+            self._report = fetcher.get_report(self.report_id)
+        return self._report
