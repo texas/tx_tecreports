@@ -36,7 +36,7 @@ def compile_filing_data(filing_cell):
     }
 
 
-def fetch_filings_list(filer_id):
+def get_filings_list(filer_id):
     p = pq(BASE_FILER_URL_TEMPLATE.format(filer_id=filer_id))
     rows = p('table[bordercolor="#CCCCCC"] tr')
 
