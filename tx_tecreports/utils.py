@@ -1,7 +1,7 @@
 import datetime
 
 
-def string_to_date(s, strict=False):
+def string_to_date(s, format='%Y%m%d', strict=False):
     """
     Convert a string to a datetime.date object
 
@@ -9,7 +9,7 @@ def string_to_date(s, strict=False):
     with the kwarg ``strict`` set to ``True``.
     """
     try:
-        return datetime.datetime.strptime(s, '%Y%m%d').date()
+        return datetime.datetime.strptime(s, format).date()
     except (TypeError, ValueError) as e:
         if strict:
             raise e
