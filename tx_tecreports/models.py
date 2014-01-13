@@ -133,10 +133,6 @@ class Receipt(object):
 
 
 class Report(object):
-    """
-
-    .. _todo:: TEST!!
-    """
     def __init__(self, raw_report=None):
         self.raw_report = raw_report
         self._initialized = False
