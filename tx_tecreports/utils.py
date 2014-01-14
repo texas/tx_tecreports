@@ -30,6 +30,13 @@ def parse_num_from_string(s):
 
 
 def extract_filing_date(s, strict=False):
+    """
+    Convert a filing list date into a datetime.date object
+
+    This works like ``string_to_date`` and returns ``None`` when it
+    can't parse a date from the string unless ``strict`` is set to
+    ``True``.
+    """
     if s:
         date_string = re.sub(r'(st|nd|rd|th),', ',', s.split(':')[1].strip())
         date_string = date_string.replace('&nbsp;', '').strip()
