@@ -192,17 +192,6 @@ class Report(object):
     def total_receipts(self):
         return sum([a.contribution.amount for a in self.receipts])
 
-from functools import wraps
-
-
-def attempts_to_initialize(func):
-    @wraps(func)
-    def inner(self, *args, **kwargs):
-        if not self._initialized:
-            self.parse()
-        return func(self, *args, **kwargs)
-    return inner
-
 
 class FilingList(list):
     def __init__(self, raw_filing_list=None):
