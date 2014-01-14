@@ -27,7 +27,7 @@ like this.
     >>> from tx_tecreports.fetcher import get_report
 
 You can fetch any report so long as you have the correct ID.  For
-example, you could grab Wend Davis' first special session report
+example, you could grab Wendy Davis' first special session report
 (the first one filed after her filibuster) with the ID ``581606``.
 You can find that ID by visiting her `filer page`_ on the
 `Texas Ethics Commission`_ website.
