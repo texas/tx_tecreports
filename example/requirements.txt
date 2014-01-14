@@ -1,0 +1,8 @@
+Django>=1.4.2
+dj-database-url==0.2.1
+dj-settings-helpers==1.0.0
+gunicorn==18.0
+South==0.8.3
+
+# dependencies
+tx_people==0.3.0
