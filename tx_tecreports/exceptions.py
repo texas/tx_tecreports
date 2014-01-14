@@ -4,3 +4,7 @@ class MultipleFound(Exception):
 
 class NotYetInitialized(Exception):
     pass
+
+
+class UnableToGet(Exception):
+    pass
