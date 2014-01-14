@@ -84,6 +84,22 @@ of that report.  Let's change it to the last day:
 
 That's more like it!
 
+
+**TODO: Flesh out this example as part of the narrative text**
+
+.. code:: python
+
+    >>> from tx_tecreports.fetcher import get_filings_list
+    >>> filings = get_filings_list("00062095COH")
+    >>> len(filings) >= 33  # Has 33 filings as of January 2014
+    True
+    >>> report = filings[-1].report
+    >>> len(report.receipts)
+    157
+    >>> report.total_receipts
+    279284.94
+
+
 .. _Texas Ethics Commission: http://www.ethics.state.tx.us/
 .. _filer page: http://www.ethics.state.tx.us/php/filer.php?acct=00062095COH
 .. _pip: http://www.pip-installer.org/en/latest/
