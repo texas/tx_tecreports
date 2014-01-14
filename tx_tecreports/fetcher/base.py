@@ -1,10 +1,6 @@
-import re
-
-from pyquery import PyQuery as pq
 import requests
 
 from . import models
-from . import utils
 
 BASE_FILER_URL_TEMPLATE = 'http://www.ethics.state.tx.us/php/filer.php?acct={filer_id}'
 BASE_URL_TEMPLATE = 'http://204.65.203.5/public/{report_id}noadd.csv'

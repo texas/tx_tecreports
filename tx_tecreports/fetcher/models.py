@@ -262,6 +262,6 @@ class Filing(object):
     @property
     def report(self):
         if not self._report and self.raw_filing_data:
-            from . import fetcher
-            self._report = fetcher.get_report(self.report_id)
+            from .base import get_report
+            self._report = get_report(self.report_id)
         return self._report

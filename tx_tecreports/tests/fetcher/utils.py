@@ -2,7 +2,7 @@ import datetime
 import random
 import unittest
 
-from .. import utils
+from ...fetcher import utils
 
 
 class string_to_date_TestCase(unittest.TestCase):
