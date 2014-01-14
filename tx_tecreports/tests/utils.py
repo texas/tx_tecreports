@@ -79,3 +79,16 @@ class extract_filing_date_TestCase(unittest.TestCase):
         raw = "Report Due: &nbsp; January 15th, 2008"
         expected = datetime.date(2008, 1, 15)
         self.assertEqual(expected, utils.extract_filing_date(raw))
+
+    def test_raises_ValueError_exception_with_strict_and_invalid_date(self):
+        with self.assertRaises(ValueError):
+            utils.extract_filing_date('Report Due: February 30th, 2008',
+                    strict=True)
+
+    def test_raises_TypeError_wth_strict_and_no_value(self):
+        with self.assertRaises(TypeError):
+            utils.extract_filing_date(None, strict=True)
+
+    def test_raises_ValueError_wth_strict_and_empty_string(self):
+        with self.assertRaises(ValueError):
+            utils.extract_filing_date('', strict=True)
