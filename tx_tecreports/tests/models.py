@@ -387,6 +387,33 @@ class BasicFilingListTestCase(unittest.TestCase):
         filing_list = self.filing_list[:1]
         self.assertEqual(1, len(filing_list))
 
+    def test_returns_empty_list_when_unable_to_find_match(self):
+        self.assertEqual([], self.filing_list.find(filer_name='Unknown'))
+
+    def test_find_returns_all_matches(self):
+        self.assertEqual(len(self.filing_list),
+                len(self.filing_list.find(filer_name='Wendy R. Davis')))
+
+    def test_find_returns_list_of_one(self):
+        actual = self.filing_list.find(report_due=datetime.date(2013, 9, 4))
+        self.assertEqual(1, len(actual))
+
+    def test_find_returns_list_of_two(self):
+        actual = self.filing_list.find(report_due=datetime.date(2010, 1, 15))
+        self.assertEqual(2, len(actual))
+
+    def test_get_returns_one(self):
+        filing = self.filing_list.get(report_due=datetime.date(2013, 9, 4))
+        self.assertEqual(models.Filing, filing.__class__)
+
+    def test_get_raises_on_not_found(self):
+        with self.assertRaises(exceptions.UnableToGet):
+            self.filing_list.get(filer_name='Unknown')
+
+    def test_get_raises_on_multiple_found(self):
+        with self.assertRaises(exceptions.MultipleFound):
+            self.filing_list.get(filer_name='Wendy R. Davis')
+
 
 class UninitializedFilingTestCase(unittest.TestCase):
     def setUp(self):

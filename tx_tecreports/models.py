@@ -211,6 +211,27 @@ class FilingList(list):
         for row in rows.items():
             self.append(Filing(row('td:first').html()))
 
+    def search(self, **kwargs):
+        for f in self:
+            for attr, value in kwargs.items():
+                if getattr(f, attr) == value:
+                    yield f
+
+    def find(self, **kwargs):
+        return list(self.search(**kwargs))
+
+    def get(self, **kwargs):
+        try:
+            result_set = self.search(**kwargs)
+            result = result_set.next()
+            try:
+                result_set.next()
+                raise exceptions.MultipleFound
+            except StopIteration:
+                return result
+        except StopIteration:
+            raise exceptions.UnableToGet
+
 
 class Filing(object):
     def __init__(self, raw_filing_data=None):
