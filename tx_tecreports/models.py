@@ -177,7 +177,7 @@ class Report(object):
                     yield r
 
     def find(self, **kwargs):
-        return [a for a in self.search(**kwargs)]
+        return list(self.search(**kwargs))
 
     def get(self, **kwargs):
         result_set = self.search(**kwargs)
