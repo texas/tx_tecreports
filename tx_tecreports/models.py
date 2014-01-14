@@ -3,7 +3,9 @@ try:
     from io import StringIO
 except ImportError:
     from StringIO import StringIO
+import re
 
+from pyquery import PyQuery as pq
 from unicsv import UnicodeCSVReader
 
 from . import exceptions
@@ -71,6 +73,10 @@ class Contributor(object):
         self.state = state
         self.zipcode = zipcode
 
+    @property
+    def full_name(self):
+        return '{0} {1}'.format(self.first_name, self.last_name).strip()
+
 
 class Contribution(object):
     def __init__(self, date, amount, description):
@@ -133,10 +139,6 @@ class Receipt(object):
 
 
 class Report(object):
-    """
-
-    .. _todo:: TEST!!
-    """
     def __init__(self, raw_report=None):
         self.raw_report = raw_report
         self._initialized = False
@@ -175,17 +177,91 @@ class Report(object):
                     yield r
 
     def find(self, **kwargs):
-        return [a for a in self.search(**kwargs)]
+        return list(self.search(**kwargs))
 
     def get(self, **kwargs):
         result_set = self.search(**kwargs)
-        result = result_set.next()
         try:
-            result_set.next()
-            raise exceptions.MultipleFound
+            result = result_set.next()
+            try:
+                result_set.next()
+                raise exceptions.MultipleFound
+            except StopIteration:
+                return result
         except StopIteration:
-            return result
+            raise exceptions.UnableToGet
 
     @property
     def total_receipts(self):
         return sum([a.contribution.amount for a in self.receipts])
+
+
+class FilingList(list):
+    def __init__(self, raw_filing_list=None):
+        self.raw_filing_list = raw_filing_list
+        self.parse()
+
+    def parse(self):
+        if self.raw_filing_list is None:
+            return
+
+        p = pq(self.raw_filing_list.text)
+        rows = p('table[bordercolor="#CCCCCC"] tr')
+
+        for row in rows.items():
+            self.append(Filing(row('td:first').html()))
+
+    def search(self, **kwargs):
+        for f in self:
+            for attr, value in kwargs.items():
+                if getattr(f, attr) == value:
+                    yield f
+
+    def find(self, **kwargs):
+        return list(self.search(**kwargs))
+
+    def get(self, **kwargs):
+        try:
+            result_set = self.search(**kwargs)
+            result = result_set.next()
+            try:
+                result_set.next()
+                raise exceptions.MultipleFound
+            except StopIteration:
+                return result
+        except StopIteration:
+            raise exceptions.UnableToGet
+
+
+class Filing(object):
+    def __init__(self, raw_filing_data=None):
+        self.raw_filing_data = raw_filing_data
+        self._report = None
+        self.filing_method = None
+        self.parse()
+
+    def parse(self):
+        if not self.raw_filing_data:
+            return
+
+        doc = pq(self.raw_filing_data.strip()).html()
+        data = [x.strip() for x in doc.split('<br/>')]
+
+        self.filer_name = data[0].split(' - ')[0]
+        self.report_id = utils.parse_num_from_string(data[1])
+        self.is_correction = 'Corrected Report' in data[1]
+        self.report_type = pq(data[2]).find('b').text()
+        self.report_due = utils.extract_filing_date(data[3])
+        self.report_filed = utils.extract_filing_date(data[4])
+        self.filing_method = data[5].split(':')[1].strip()
+
+    @property
+    def is_downloadable(self):
+        return self.filing_method == 'Electronic'
+
+    @property
+    def report(self):
+        if not self._report and self.raw_filing_data:
+            from . import fetcher
+            self._report = fetcher.get_report(self.report_id)
+        return self._report
