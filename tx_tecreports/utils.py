@@ -25,3 +25,9 @@ def parse_num_from_string(s):
     match = re.match('[^\d]*(\d+).*', s)
     if match:
         return int(match.groups()[0])
+
+
+def extract_filing_date(s):
+    date_string = re.sub(r'(st|nd|rd|th),', ',', s.split(':')[1].strip())
+    date_string = date_string.replace('&nbsp;', '').strip()
+    return string_to_date(date_string, format='%B %d, %Y')
