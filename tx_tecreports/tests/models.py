@@ -324,6 +324,10 @@ class FindingReceiptsInReportTestCase(unittest.TestCase):
         with self.assertRaises(exceptions.MultipleFound):
             self.report.get(name_of_schedule='A1')
 
+    def test_raises_exception_on_none_found(self):
+        with self.assertRaises(exceptions.UnableToGet):
+            self.report.get(name_of_schedule='A1-B')
+
 
 class UninitializedReportTestCase(unittest.TestCase):
     def setUp(self):

@@ -181,12 +181,15 @@ class Report(object):
 
     def get(self, **kwargs):
         result_set = self.search(**kwargs)
-        result = result_set.next()
         try:
-            result_set.next()
-            raise exceptions.MultipleFound
+            result = result_set.next()
+            try:
+                result_set.next()
+                raise exceptions.MultipleFound
+            except StopIteration:
+                return result
         except StopIteration:
-            return result
+            raise exceptions.UnableToGet
 
     @property
     def total_receipts(self):
