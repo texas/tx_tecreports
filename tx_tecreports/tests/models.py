@@ -1,4 +1,5 @@
 import datetime
+import os
 import random
 import unittest
 
@@ -6,6 +7,9 @@ import mock
 
 from .. import exceptions
 from .. import models
+
+BASE_FILE_PATH = os.path.dirname(__file__)
+EXAMPLE_FILE_PATH = os.path.join(BASE_FILE_PATH, 'examples')
 
 SAMPLE_CVR_LINE = 'CVR,COH-SS,00062095,IND,Davis,Wendy R.,,,,0,20130730,20130805,20140304,P,,,,,,,,,,,,,SEN,,10,SEN,,10,P.O. Box 1039,,Fort Worth,TX,76101,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Wendy R. Davis,,,,,,,,'
 SAMPLE_OUT_OF_STATE_PAC_LINE = 'RCPT,A1,414,ENT,PACPlus,,,,,,San Francisco,CA,94104-3503,X,C00516500,20130730,250.00,,,,,,,,,,,,,,,,,,,'
@@ -344,11 +348,91 @@ class UninitializedReportTestCase(unittest.TestCase):
 
 class UninitializedFilingListTestCase(unittest.TestCase):
     def setUp(self):
-        self.filing = models.FilingList()
+        self.filing_list = models.FilingList()
 
     def test_has_length_of_zero_by_default(self):
-        self.assertEqual(0, len(self.filing))
+        self.assertEqual(0, len(self.filing_list))
 
     def test_raises_exception(self):
-        with self.assertRaises(exceptions.UnableToInitialize):
-            self.filing[0]
+        with self.assertRaises(IndexError):
+            self.filing_list[0]
+
+
+class BasicFilingListTestCase(unittest.TestCase):
+    def setUp(self):
+        with open(os.path.join(EXAMPLE_FILE_PATH, 'davis.html')) as f:
+            self.response = mock.Mock(text=f.read())
+        self.filing_list = models.FilingList(raw_filing_list=self.response)
+
+    def test_length_is_correct(self):
+        self.assertEqual(33, len(self.filing_list))
+
+    def test_returns_list_of_filing_objects(self):
+        for f in self.filing_list:
+            self.assertEqual(f.__class__, models.Filing)
+
+    def test_able_to_pull_first_item(self):
+        f = self.filing_list[0]
+        self.assertEqual(f.__class__, models.Filing)
+
+    def test_able_to_pull_last_item(self):
+        f = self.filing_list[-1]
+        self.assertEqual(f.__class__, models.Filing)
+
+    def test_able_to_pull_slice(self):
+        filing_list = self.filing_list[:1]
+        self.assertEqual(1, len(filing_list))
+
+
+class UninitializedFilingTestCase(unittest.TestCase):
+    def setUp(self):
+        self.filing = models.Filing()
+
+    def test_report_is_empty(self):
+        self.assertEqual(None, self.filing.report)
+
+    def test_is_downloadable_is_false(self):
+        self.assertFalse(self.filing.is_downloadable)
+
+
+class BasicFilingTestCase(unittest.TestCase):
+    def setUp(self):
+        test_file = lambda s: os.path.join(EXAMPLE_FILE_PATH, s)
+        with open(test_file('davis-individual.html')) as f:
+            self.raw_filing_data = f.read().strip()
+        self.filing = models.Filing(raw_filing_data=self.raw_filing_data)
+
+    def test_is_downloadable_is_true(self):
+        self.assertTrue(self.filing.is_downloadable)
+
+    def test_filer_name(self):
+        self.assertEqual('Wendy R. Davis', self.filing.filer_name)
+
+    def test_report_id(self):
+        self.assertEqual(361363, self.filing.report_id)
+
+    def test_is_correction(self):
+        self.assertFalse(self.filing.is_correction)
+
+    def test_report_type(self):
+        self.assertEqual('January Semiannual', self.filing.report_type)
+
+    def test_report_due(self):
+        self.assertEqual(datetime.date(2008, 1, 15), self.filing.report_due)
+
+    def test_report_filing(self):
+        self.assertEqual(datetime.date(2008, 1, 15), self.filing.report_filed)
+
+    def test_filing_method(self):
+        self.assertEqual('Electronic', self.filing.filing_method)
+
+
+class CorrectedFilingTestCase(unittest.TestCase):
+    def setUp(self):
+        test_file = lambda s: os.path.join(EXAMPLE_FILE_PATH, s)
+        with open(test_file('davis-correct.html')) as f:
+            self.raw_filing_data = f.read().strip()
+        self.filing = models.Filing(raw_filing_data=self.raw_filing_data)
+
+    def test_is_correction(self):
+        self.assertTrue(self.filing.is_correction)

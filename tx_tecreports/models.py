@@ -8,7 +8,6 @@ import re
 from pyquery import PyQuery as pq
 from unicsv import UnicodeCSVReader
 
-import fetcher
 from . import exceptions
 from . import utils
 from .helpers import require_initialization, type_of_boolean
@@ -193,20 +192,22 @@ class Report(object):
     def total_receipts(self):
         return sum([a.contribution.amount for a in self.receipts])
 
+from functools import wraps
+
+
+def attempts_to_initialize(func):
+    @wraps(func)
+    def inner(self, *args, **kwargs):
+        if not self._initialized:
+            self.parse()
+        return func(self, *args, **kwargs)
+    return inner
+
 
 class FilingList(list):
     def __init__(self, raw_filing_list=None):
         self.raw_filing_list = raw_filing_list
-        self._filings = []
         self.parse()
-        self.extend(self._filings)
-
-    def __getitem__(self, key):
-        if not self._filings:
-            self.parse()
-        if not self._filings:
-            raise exceptions.UnableToInitialize
-        return self._filings[key]
 
     def parse(self):
         if self.raw_filing_list is None:
@@ -216,41 +217,41 @@ class FilingList(list):
         rows = p('table[bordercolor="#CCCCCC"] tr')
 
         for row in rows.items():
-            self._filings.append(self.compile_filing_data(row('td').eq(0)))
+            self.append(Filing(row('td:first').html()))
 
-    def compile_filing_data(self, filing_cell):
-        data = [x.strip() for x in filing_cell.html().split('<br />')]
+
+class Filing(object):
+    def __init__(self, raw_filing_data=None):
+        self.raw_filing_data = raw_filing_data
+        self._report = None
+        self.filing_method = None
+        self.parse()
+
+    def parse(self):
+        if not self.raw_filing_data:
+            return
+
+        doc = pq(self.raw_filing_data.strip()).html()
+        data = [x.strip() for x in doc.split('<br/>')]
 
         report_due = re.sub(r'(st|nd|rd|th),', ',', data[3].split(':')[1].strip())
         report_filed = re.sub(r'(st|nd|rd|th),', ',', data[4].split(':')[1].strip())
 
-        return Filing({
-            'filer_name': data[0].split(' - ')[0],
-            'report_id': utils.parse_num_from_string(data[1]),
-            'is_correction': 'Corrected Report' in data[1],
-            'report_type': pq(data[2]).find('b').text(),
-            'report_due': utils.string_to_date(report_due, format='%B %d, %Y'),
-            'report_filed': utils.string_to_date(report_filed, format='%B %d, %Y'),
-            'filing_method': data[5].split(':')[1].strip(),
-        })
+        self.filer_name = data[0].split(' - ')[0]
+        self.report_id = utils.parse_num_from_string(data[1])
+        self.is_correction = 'Corrected Report' in data[1]
+        self.report_type = pq(data[2]).find('b').text()
+        self.report_due = utils.string_to_date(report_due, format='%B %d, %Y')
+        self.report_filed = utils.string_to_date(report_filed, format='%B %d, %Y')
+        self.filing_method = data[5].split(':')[1].strip()
 
-
-class Filing(object):
-    def __init__(self, raw_filing_data):
-        self.raw_filing_data = raw_filing_data
-
-        self.filer_name = raw_filing_data['filer_name']
-        self.report_id = raw_filing_data['report_id']
-        self.is_correction = raw_filing_data['is_correction']
-        self.report_type = raw_filing_data['report_type']
-        self.report_due = raw_filing_data['report_due']
-        self.report_filed = raw_filing_data['report_filed']
-        self.filing_method = raw_filing_data['filing_method']
-
-        self._report = None
+    @property
+    def is_downloadable(self):
+        return self.filing_method == 'Electronic'
 
     @property
     def report(self):
-        if not self._report:
+        if not self._report and self.raw_filing_data:
+            from . import fetcher
             self._report = fetcher.get_report(self.report_id)
         return self._report
