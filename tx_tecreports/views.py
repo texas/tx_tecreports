@@ -36,6 +36,8 @@ class ReportAPIView(View):
         data = {
             '_meta': {
                 'report_id': report.report_id,
+                'filer_id': report.filer_id,
+                'filer_type': report.filer_type,
                 'unitemized_contributions': report.unitemized_contributions,
                 'total_contributions': report.total_contributions,
                 'unitemized_expenditures': report.unitemized_expenditures,
