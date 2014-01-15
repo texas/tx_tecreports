@@ -14,7 +14,7 @@ class DecimalEncoder(json.JSONEncoder):
         if isinstance(o, decimal.Decimal):
             return str(o)
         if isinstance(o, datetime.date):
-            return o.strftime('%Y/%m/%d')
+            return o.strftime('%m/%d/%Y')
         return super(DecimalEncoder, self).default(o)
 
 
