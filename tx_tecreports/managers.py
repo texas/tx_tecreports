@@ -34,7 +34,7 @@ class ContributionsByAmountManager(AsSimpleDictMixin, models.Manager):
         # import ipdb; ipdb.set_trace()
         stats, created = self.model.objects.get_or_create(
                 report=instance.report, **bucket)
-        stats.refresh_stats()
+        stats.refresh_stats(report=instance.report)
         stats.save()
 
 
@@ -46,7 +46,7 @@ class ContributionsByDateManager(AsSimpleDictMixin, models.Manager):
             return
         stats, created = self.model.objects.get_or_create(date=instance.date,
                 report=instance.report)
-        stats.refresh_stats()
+        stats.refresh_stats(report=instance.report)
         stats.save()
 
 
@@ -58,7 +58,7 @@ class ContributionByZipcodeManager(AsSimpleDictMixin, models.Manager):
             return
         stats, created = self.model.objects.get_or_create(
                 report=instance.report, zipcode=instance.contributor.zipcode)
-        stats.refresh_stats()
+        stats.refresh_stats(report=instance.report)
         stats.save()
 
 
@@ -70,5 +70,5 @@ class ContributionByStateManager(AsSimpleDictMixin, models.Manager):
             return
         stats, created = self.model.objects.get_or_create(
                 state=instance.contributor.state, report=instance.report)
-        stats.refresh_stats()
+        stats.refresh_stats(report=instance.report)
         stats.save()
