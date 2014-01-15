@@ -27,7 +27,7 @@ for dirpath, dirnames, filenames in os.walk('tx_tecreports'):
 
 setup(
     name='tx_tecreports',
-    version='0.3.3',
+    version='0.3.4',
     description='Package for dealing with TEC reports',
     author='Tribune Tech',
     author_email='tech@texastribune.org',
