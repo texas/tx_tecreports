@@ -2,21 +2,7 @@ from django.db import models
 from django.db.models import signals
 
 from . import managers
-
-
-class MaxCharField(models.CharField):
-    def __init__(self, **kwargs):
-        kwargs['max_length'] = 250
-        super(MaxCharField, self).__init__(**kwargs)
-
-
-class OptionalMaxCharField(MaxCharField):
-    def __init__(self, **kwargs):
-        kwargs.update({
-            'null': True,
-            'blank': True,
-        })
-        super(OptionalMaxCharField, self).__init__(**kwargs)
+from .fields import MaxCharField, OptionalMaxCharField
 
 
 class FilerType(models.Model):
