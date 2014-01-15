@@ -134,6 +134,10 @@ class ContributionsByAmount(models.Model):
         for k, v in stats.items():
             setattr(self, k, v)
 
+    def __unicode__(self):
+        return u'{name} ${amount:0.2f} via {total} contribution(s)'.format(
+                name=self.name, amount=self.amount, total=self.total)
+
 
 class ContributionsByDate(models.Model):
     date = models.DateField()
@@ -148,6 +152,10 @@ class ContributionsByDate(models.Model):
                 amount=models.Sum('amount'), total=models.Count('id')))
         for k, v in stats.items():
             setattr(self, k, v)
+
+    def __unicode__(self):
+        return u'{date} ${amount:0.2f} via {total} contribution(s)'.format(
+                date=self.date, amount=self.amount, total=self.total)
 
 
 class ContributionsByState(models.Model):
@@ -184,6 +192,10 @@ class ContributionsByZipcode(models.Model):
                         total=models.Count('id')))
         for k, v in stats.items():
             setattr(self, k, v)
+
+    def __unicode__(self):
+        return u'{zipcode} ${amount:0.2f} via {total} contribution(s)'.format(
+                zipcode=self.zipcode, amount=self.amount, total=self.total)
 
 
 class FilingMethod(models.Model):
