@@ -77,6 +77,25 @@ class Contributor(object):
     def full_name(self):
         return '{0} {1}'.format(self.first_name, self.last_name).strip()
 
+    def save(self):
+        from .. import models
+        type_of, created = models.ContributorType.objects.get_or_create(
+                name=self.type_of)
+        contributor, created = models.Contributor.objects.get_or_create(
+                type_of=type_of,
+                is_individual=self.is_individual,
+                is_entity=self.is_entity,
+                last_name=self.last_name,
+                first_name=self.first_name,
+                title=self.title,
+                suffix=self.suffix,
+                address_1=self.address_1,
+                address_2=self.address_2,
+                city=self.city,
+                state=self.state,
+                zipcode=self.zipcode)
+        return contributor
+
 
 class Contribution(object):
     def __init__(self, date, amount, description):
@@ -100,6 +119,22 @@ class Travel(object):
         self.destination = destination
         self.arrival_date = utils.string_to_date(arrival_date)
         self.purpose = purpose
+
+    def save(self, receipt):
+        from .. import models
+        travel, created = models.Travel.objects.get_or_create(
+            last_name=self.last_name,
+            first_name=self.first_name,
+            title=self.title,
+            suffix=self.suffix,
+            means_of=self.means_of,
+            departure_location=self.departure_location,
+            departure_date=self.departure_date,
+            destination=self.destination,
+            arrival_date=self.arrival_date,
+            purpose=self.purpose
+        )
+        return travel
 
 
 class Receipt(object):
@@ -130,12 +165,44 @@ class Receipt(object):
             self.id = '%s-%s' % (self.parent_id, self.id)
 
     @property
+    def is_child(self):
+        return self.parent_id
+
+    @property
     def parent(self):
         if not self.parent_id:
             return
         if self.report is None:
             raise Exception('Unable to locate parent (no report present)')
         return self.report.find(id=self.parent_id)
+
+    def save(self, report):
+        from .. import models
+        if self.employer:
+            employer, created = models.Employer.objects.get_or_create(
+                    name=self.employer)
+        else:
+            employer = None
+        kwargs = {
+            'contributor': self.contributor.save(),
+            'report': report,
+            'date': self.contribution.date,
+            'amount': self.contribution.amount,
+            'description': self.contribution.description,
+            'employer': employer,
+            'job_title': self.job_title,
+            'name_of_schedule': self.name_of_schedule,
+            'receipt_id': self.id,
+            'is_out_of_state_pac': self.is_out_of_state_pac,
+            'fec_id': self.fec_id,
+        }
+        if self.parent_id:
+            kwargs['parent_id'] = self.parent_id
+
+        receipt, created = models.Receipt.objects.get_or_create(**kwargs)
+        if self.is_travel:
+            self.travel.save(receipt=receipt)
+        return receipt
 
 
 class Report(object):
@@ -194,6 +261,21 @@ class Report(object):
     @property
     def total_receipts(self):
         return sum([a.contribution.amount for a in self.receipts])
+
+    def save(self):
+        from .. import models
+
+        # TODO: Save Race data
+        kwargs = {
+            'report_number': self.cover.report_number,
+            'is_original': self.cover.is_original,
+            'from_date': self.cover.from_date,
+            'through_date': self.cover.through_date,
+        }
+        report, created = models.Report.objects.get_or_create(**kwargs)
+        for receipt in self.receipts:
+            receipt.save(report=report)
+        return report
 
 
 class FilingList(list):

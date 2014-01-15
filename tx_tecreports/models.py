@@ -1,7 +1,5 @@
 from django.db import models
 
-from tx_elections import models as tx_elections
-
 
 class MaxCharField(models.CharField):
     def __init__(self, **kwargs):
@@ -67,17 +65,40 @@ class Report(models.Model):
     is_original = models.BooleanField(default=True)
     from_date = models.DateField()
     through_date = models.DateField()
-    election = models.ForeignKey(tx_elections.Race)
+    # election = models.ForeignKey(tx_elections.Race)
 
     @property
     def total_receipts(self):
         pass
 
 
+class ContributorType(models.Model):
+    name = MaxCharField()
+
+    def __unicode__(self):
+        return self.name
+
+
+class Contributor(models.Model):
+    type_of = models.ForeignKey(ContributorType, related_name='contributors')
+    is_individual = models.BooleanField()
+    is_entity = models.BooleanField()
+    last_name = OptionalMaxCharField()
+    first_name = OptionalMaxCharField()
+    title = OptionalMaxCharField()
+    suffix = OptionalMaxCharField()
+    address_1 = OptionalMaxCharField()
+    address_2 = OptionalMaxCharField()
+    city = OptionalMaxCharField()
+    state = OptionalMaxCharField()
+    zipcode = OptionalMaxCharField()
+
+
 class Receipt(models.Model):
     report = models.ForeignKey(Report, related_name='receipts')
     parent = models.ForeignKey('self', related_name='children', blank=True,
             null=True)
+    contributor = models.ForeignKey(Contributor, related_name='receipts')
     date = models.DateField(null=True, blank=True)
     amount = models.DecimalField(decimal_places=2, max_digits=12, null=True, blank=True)
     description = models.CharField(max_length=250, null=True, blank=True)
