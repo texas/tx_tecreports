@@ -41,7 +41,8 @@ class ReportAPIView(View):
             'top_contribs_by_zip': qs_to_dict(
                     report.stats_by_zipcode.all()[:10]),
             'buckets': qs_to_dict(report.stats_by_amount.all()),
-            'top_ten_donations': qs_to_dict(report.receipts.all()[:10]),
+            'top_ten_donations': qs_to_dict(
+                    report.receipts.all().order_by('-amount')[:10]),
             'contribs_by_date': qs_to_dict(report.stats_by_date.all()),
         }
         return JSONPResponse(data, request)
