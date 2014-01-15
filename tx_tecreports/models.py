@@ -51,6 +51,7 @@ class Travel(models.Model):
 
 class Report(models.Model):
     report_id = models.PositiveIntegerField()
+    filer_id = OptionalMaxCharField()  # TODO: reference actual tx_people.Identifier for tec.
     report_number = models.PositiveIntegerField(default=0)
     is_original = models.BooleanField(default=True)
     from_date = models.DateField()

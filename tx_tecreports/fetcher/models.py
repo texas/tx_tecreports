@@ -297,6 +297,7 @@ class Report(object):
         # TODO: Save Race data
         kwargs = {
             'report_id': self.report_id,
+            'filer_id': self.cover.filer.filer_id,
             'report_number': self.cover.report_number,
             'is_original': self.cover.is_original,
             'from_date': self.cover.from_date,
