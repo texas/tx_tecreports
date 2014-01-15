@@ -298,6 +298,7 @@ class Report(object):
         kwargs = {
             'report_id': self.report_id,
             'filer_id': self.cover.filer.filer_id,
+            'filer_type': self.cover.filer.filer_type,
             'report_number': self.cover.report_number,
             'is_original': self.cover.is_original,
             'from_date': self.cover.from_date,
