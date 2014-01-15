@@ -55,6 +55,14 @@ class Report(models.Model):
     is_original = models.BooleanField(default=True)
     from_date = models.DateField()
     through_date = models.DateField()
+    unitemized_contributions = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_contributions = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    unitemized_expenditures = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_expenditures = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    outstanding_loans = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    cash_on_hand = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    unitemized_pledges = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    unitemized_loans = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     # election = models.ForeignKey(tx_elections.Race)
 
     @property

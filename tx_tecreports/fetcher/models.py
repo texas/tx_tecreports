@@ -301,6 +301,14 @@ class Report(object):
             'is_original': self.cover.is_original,
             'from_date': self.cover.from_date,
             'through_date': self.cover.through_date,
+            'unitemized_contributions': self.unitemized_contributions,
+            'total_contributions': self.total_contributions,
+            'unitemized_expenditures': self.unitemized_expenditures,
+            'total_expenditures': self.total_expenditures,
+            'outstanding_loans': self.outstanding_loans,
+            'cash_on_hand': self.cash_on_hand,
+            'unitemized_pledges': self.unitemized_pledges,
+            'unitemized_loans': self.unitemized_loans,
         }
         report, created = models.Report.objects.get_or_create(**kwargs)
         for receipt in self.receipts:
