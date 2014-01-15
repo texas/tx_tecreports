@@ -1,4 +1,5 @@
 import datetime
+import decimal
 import os
 import random
 import unittest
@@ -16,6 +17,8 @@ SAMPLE_OUT_OF_STATE_PAC_LINE = 'RCPT,A1,414,ENT,PACPlus,,,,,,San Francisco,CA,94
 SAMPLE_INDIVIDUAL_RECEIPT_LINE = 'RCPT,A1,98,IND,Champion,Nancy,,,,,Fort Worth,TX,76107-3235,,,20130805,25.00,,Fort Worth ISD,Teacher,,,,,,,,,,,,,,,,'
 SAMPLE_TRAVEL_LINE = 'RCPT,A1,634,IND,Patton,Robert,,,,,Fort Worth,TX,76107-4878,,,20130805,8000.00,(See travel info),Self-employed,Investor,,,,,X,Patton,Robert,,,Private airplane,Fort Worth TX,20130805,Washington DC (Dulles),20130805,Attend National Press Club event,'
 SAMPLE_TRAVEL_SUB_RECEIPT_LINE = 'RCPT,A1,10,,,,,,,,,,,,,,,,,,,,,,X,Davis,Wendy,,,Private airplane,Washington DC (Dulles),20130805,Austin TX,20130805,Return from National Press Club event,634'
+
+test_file = lambda s: os.path.join(EXAMPLE_FILE_PATH, s)
 
 
 class ElectionTest(unittest.TestCase):
@@ -247,6 +250,18 @@ class TravelTestCase(unittest.TestCase):
         self.assertEqual(datetime.date(2000, 1, 1), t.arrival_date)
 
 
+def create_mock_report(contents):
+    iter_lines = mock.Mock(callable=True, return_value=contents)
+    raw_report = mock.Mock(iter_lines=iter_lines)
+    return raw_report
+
+
+def generate_report_from_file(filename):
+    with open(test_file(filename)) as f:
+        lines = f.readlines()
+    return create_mock_report(lines)
+
+
 def generate_mock_report():
     simple_report = [
         SAMPLE_CVR_LINE,
@@ -255,9 +270,7 @@ def generate_mock_report():
         SAMPLE_TRAVEL_LINE,
         SAMPLE_TRAVEL_SUB_RECEIPT_LINE,
     ]
-    iter_lines = mock.Mock(callable=True, return_value=simple_report)
-    raw_report = mock.Mock(iter_lines=iter_lines)
-    return raw_report
+    return create_mock_report(simple_report)
 
 
 class ReportTestCase(unittest.TestCase):
@@ -298,6 +311,75 @@ class ParsingReportTestCase(unittest.TestCase):
         # smoke test to ensure there's an empty contribution
         receipt = self.report.get(id='634-10')
         self.assertEqual(0, receipt.contribution.amount)
+
+
+class ReportWithJustSummary(unittest.TestCase):
+    def setUp(self):
+        raw_report = generate_report_from_file('pena.csv')
+        self.report = models.Report(raw_report=raw_report)
+
+    def test_has_empty_receipts(self):
+        self.assertEqual(0, len(self.report.receipts))
+
+    def test_has_unitemized_contributions(self):
+        self.assertEqual(0, self.report.unitemized_contributions)
+
+    def test_has_total_contributions(self):
+        self.assertEqual(0, self.report.total_contributions)
+
+    def test_has_unitemized_expenditures(self):
+        self.assertEqual(0, self.report.unitemized_expenditures)
+
+    def test_has_total_expenditures(self):
+        self.assertEqual(decimal.Decimal('750.00'),
+                self.report.total_expenditures)
+
+    def test_has_outstanding_loans(self):
+        self.assertEqual(0, self.report.outstanding_loans)
+
+    def test_has_cash_on_hand(self):
+        self.assertEqual(0, self.report.cash_on_hand)
+
+    def test_has_unitemized_pledges(self):
+        self.assertEqual(0, self.report.unitemized_pledges)
+
+    def test_has_unitemized_loans(self):
+        self.assertEqual(0, self.report.unitemized_loans)
+
+
+class VerifySummaryDataInReport(unittest.TestCase):
+    def setUp(self):
+        raw_report = generate_report_from_file('davis.csv')
+        self.report = models.Report(raw_report=raw_report)
+
+    def test_has_unitemized_contributions(self):
+        expected = decimal.Decimal('271213.75')
+        self.assertEqual(expected, self.report.unitemized_contributions)
+
+    def test_has_total_contributions(self):
+        expected = decimal.Decimal('933470.50')
+        self.assertEqual(expected, self.report.total_contributions)
+
+    def test_has_unitemized_expenditures(self):
+        expected = decimal.Decimal('2106.83')
+        self.assertEqual(expected, self.report.unitemized_expenditures)
+
+    def test_has_total_expenditures(self):
+        expected = decimal.Decimal('292657.07')
+        self.assertEqual(expected, self.report.total_expenditures)
+
+    def test_has_cash_on_hand(self):
+        expected = decimal.Decimal('1063108.05')
+        self.assertEqual(expected, self.report.cash_on_hand)
+
+    def test_has_outstanding_loans(self):
+        self.assertEqual(0, self.report.outstanding_loans)
+
+    def test_has_unitemized_pledges(self):
+        self.assertEqual(0, self.report.unitemized_pledges)
+
+    def test_has_unitemized_loans(self):
+        self.assertEqual(0, self.report.unitemized_loans)
 
 
 class FindingReceiptsInReportTestCase(unittest.TestCase):

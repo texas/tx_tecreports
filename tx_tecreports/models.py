@@ -2,21 +2,7 @@ from django.db import models
 from django.db.models import signals
 
 from . import managers
-
-
-class MaxCharField(models.CharField):
-    def __init__(self, **kwargs):
-        kwargs['max_length'] = 250
-        super(MaxCharField, self).__init__(**kwargs)
-
-
-class OptionalMaxCharField(MaxCharField):
-    def __init__(self, **kwargs):
-        kwargs.update({
-            'null': True,
-            'blank': True,
-        })
-        super(OptionalMaxCharField, self).__init__(**kwargs)
+from .fields import MaxCharField, OptionalMaxCharField
 
 
 class FilerType(models.Model):
@@ -58,7 +44,7 @@ class Travel(models.Model):
     means_of = MaxCharField()
     departure_location = MaxCharField()
     departure_date = models.DateField()
-    distination = MaxCharField()
+    destination = MaxCharField()
     arrival_date = models.DateField()
     purpose = MaxCharField()
 
@@ -69,6 +55,14 @@ class Report(models.Model):
     is_original = models.BooleanField(default=True)
     from_date = models.DateField()
     through_date = models.DateField()
+    unitemized_contributions = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_contributions = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    unitemized_expenditures = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_expenditures = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    outstanding_loans = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    cash_on_hand = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    unitemized_pledges = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    unitemized_loans = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     # election = models.ForeignKey(tx_elections.Race)
 
     @property

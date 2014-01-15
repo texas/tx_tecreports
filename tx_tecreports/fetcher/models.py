@@ -1,3 +1,4 @@
+import decimal
 # Try to use Python3 here
 try:
     from io import StringIO
@@ -205,6 +206,24 @@ class Receipt(object):
         return receipt
 
 
+def summary_property(key1, key2):
+    def inner(self):
+        if not 'SMRY' in self.buckets:
+            return 0
+        for row in self.buckets['SMRY']:
+            row = row.split(',')
+            if not row[1] in key1:
+                continue
+            if row[2] == key2:
+                return decimal.Decimal(row[3])
+        return 0
+    return property(inner)
+
+
+def simple_summary_property(key2):
+    return summary_property(['COH', 'SCCOH'], key2)
+
+
 class Report(object):
     def __init__(self, report_id=None, raw_report=None):
         self.report_id = report_id
@@ -224,6 +243,15 @@ class Report(object):
             self.buckets[line_type].append(line)
         self._initialized = True
 
+    unitemized_contributions = simple_summary_property('1')
+    total_contributions = simple_summary_property('2')
+    unitemized_expenditures = simple_summary_property('3')
+    total_expenditures = simple_summary_property('4')
+    outstanding_loans = simple_summary_property('5')
+    cash_on_hand = simple_summary_property('6')
+    unitemized_pledges = summary_property(['B1', ], '4')
+    unitemized_loans = summary_property(['E', ], '4')
+
     @require_initialization
     def cover(self):
         data = self.buckets['CVR'][0].split(',')
@@ -233,7 +261,7 @@ class Report(object):
     def receipts(self):
         if self._receipts is None:
             self._receipts = []
-            data = StringIO(u"\n".join(self.buckets['RCPT']))
+            data = StringIO(u"\n".join(self.buckets.get('RCPT', [])))
             for row in UnicodeCSVReader(data):
                 self._receipts.append(Receipt(row, self))
         return self._receipts
@@ -273,6 +301,14 @@ class Report(object):
             'is_original': self.cover.is_original,
             'from_date': self.cover.from_date,
             'through_date': self.cover.through_date,
+            'unitemized_contributions': self.unitemized_contributions,
+            'total_contributions': self.total_contributions,
+            'unitemized_expenditures': self.unitemized_expenditures,
+            'total_expenditures': self.total_expenditures,
+            'outstanding_loans': self.outstanding_loans,
+            'cash_on_hand': self.cash_on_hand,
+            'unitemized_pledges': self.unitemized_pledges,
+            'unitemized_loans': self.unitemized_loans,
         }
         report, created = models.Report.objects.get_or_create(**kwargs)
         for receipt in self.receipts:

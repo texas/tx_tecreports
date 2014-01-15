@@ -35,7 +35,15 @@ class ReportAPIView(View):
         qs_to_dict = lambda qs: [a.as_simple_dict() for a in qs]
         data = {
             '_meta': {
-                'filer_id': 'TODO',
+                'report_id': report.report_id,
+                'unitemized_contributions': report.unitemized_contributions,
+                'total_contributions': report.total_contributions,
+                'unitemized_expenditures': report.unitemized_expenditures,
+                'total_expenditures': report.total_expenditures,
+                'outstanding_loans': report.outstanding_loans,
+                'cash_on_hand': report.cash_on_hand,
+                'unitemized_pledges': report.unitemized_pledges,
+                'unitemized_loans': report.unitemized_loans,
             },
             'contribs_by_state': qs_to_dict(report.stats_by_state.all()),
             'top_contribs_by_zip': qs_to_dict(
