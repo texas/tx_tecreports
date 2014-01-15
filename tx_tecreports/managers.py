@@ -1,13 +1,15 @@
+import decimal
+
 from django.db import models
 
 
 AMOUNT_BUCKETS = [
-    {'name': 'less_5k', 'low': 0, 'high': 4999.99},
-    {'name': '5k_10k', 'low': 5000, 'high': 9999.99},
-    {'name': '10k_20k', 'low': 10000, 'high': 19999.99},
-    {'name': '20k_50k', 'low': 20000, 'high': 49999.99},
-    {'name': '50k_100k', 'low': 50000, 'high': 99999.99},
-    {'name': 'more_100k', 'low': 100000, 'high': 1000000000},
+    {'name': 'less_5k', 'low': decimal.Decimal(0), 'high': decimal.Decimal(4999.99)},
+    {'name': '5k_10k', 'low': decimal.Decimal(5000), 'high': decimal.Decimal(9999.99)},
+    {'name': '10k_20k', 'low': decimal.Decimal(10000), 'high': decimal.Decimal(19999.99)},
+    {'name': '20k_50k', 'low': decimal.Decimal(20000), 'high': decimal.Decimal(49999.99)},
+    {'name': '50k_100k', 'low': decimal.Decimal(50000), 'high': decimal.Decimal(99999.99)},
+    {'name': 'more_100k', 'low': decimal.Decimal(100000), 'high': decimal.Decimal(1000000000)},
 ]
 
 

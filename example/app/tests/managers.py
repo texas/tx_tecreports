@@ -1,4 +1,5 @@
 import datetime
+import random
 
 
 from django.test import TestCase
@@ -13,6 +14,7 @@ class GenericStatsTestCase(TestCase):
         from_date = datetime.date(2013, 1, 1)
         through_date = datetime.date(2013, 12, 31)
         return models.Report.objects.create(report_number=0,
+                report_id=random.randint(2000000, 3000000),
                 from_date=from_date, through_date=through_date)
 
     def generate_contributor(self, **kwargs):
