@@ -44,7 +44,7 @@ class Travel(models.Model):
     means_of = MaxCharField()
     departure_location = MaxCharField()
     departure_date = models.DateField()
-    distination = MaxCharField()
+    destination = MaxCharField()
     arrival_date = models.DateField()
     purpose = MaxCharField()
 
