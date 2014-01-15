@@ -1,10 +1,6 @@
-import re
-
-from pyquery import PyQuery as pq
 import requests
 
 from . import models
-from . import utils
 
 BASE_FILER_URL_TEMPLATE = 'http://www.ethics.state.tx.us/php/filer.php?acct={filer_id}'
 BASE_URL_TEMPLATE = 'http://204.65.203.5/public/{report_id}noadd.csv'
@@ -16,7 +12,7 @@ def fetch_raw_report(report_id):
 
 def get_report(report_id):
     raw_report = fetch_raw_report(report_id)
-    return models.Report(raw_report=raw_report)
+    return models.Report(report_id=report_id, raw_report=raw_report)
 
 
 def fetch_filing_list(filer_id):

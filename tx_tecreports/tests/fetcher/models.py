@@ -5,8 +5,8 @@ import unittest
 
 import mock
 
-from .. import exceptions
-from .. import models
+from ...fetcher import exceptions
+from ...fetcher import models
 
 BASE_FILE_PATH = os.path.dirname(__file__)
 EXAMPLE_FILE_PATH = os.path.join(BASE_FILE_PATH, 'examples')

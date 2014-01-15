@@ -1,267 +1,275 @@
-# Try to use Python3 here
-try:
-    from io import StringIO
-except ImportError:
-    from StringIO import StringIO
-import re
+from django.db import models
+from django.db.models import signals
 
-from pyquery import PyQuery as pq
-from unicsv import UnicodeCSVReader
-
-from . import exceptions
-from . import utils
-from .helpers import require_initialization, type_of_boolean
+from . import managers
 
 
-class Election(object):
-    def __init__(self, date=None, type_of=None, description=None):
-        self.date = utils.string_to_date(date)
-        self.type_of = type_of
-        self.description = description
-
-    is_primary = type_of_boolean('P')
-    is_general = type_of_boolean('G')
-    is_runoff = type_of_boolean('R')
-    is_special = type_of_boolean('S')
-    is_other = type_of_boolean('O')
+class MaxCharField(models.CharField):
+    def __init__(self, **kwargs):
+        kwargs['max_length'] = 250
+        super(MaxCharField, self).__init__(**kwargs)
 
 
-class Filer(object):
-    def __init__(self, filer_id=None, filer_type=None, last_name=None,
-            first_name=None, name_prefix=None, name_suffix=None,
-            nickname=None):
-        self.filer_id = filer_id
-        self.filer_type = filer_type
-        self.last_name = last_name
-        self.first_name = first_name
-        self.name_prefix = name_prefix
-        self.name_suffix = name_suffix
-        self.nickname = nickname
+class OptionalMaxCharField(MaxCharField):
+    def __init__(self, **kwargs):
+        kwargs.update({
+            'null': True,
+            'blank': True,
+        })
+        super(OptionalMaxCharField, self).__init__(**kwargs)
 
 
-class Cover(object):
-    def __init__(self, data):
-        self.data = data
-        self.parse()
+class FilerType(models.Model):
+    name = MaxCharField()
 
-    def parse(self):
-        self.type_of_filing = self.data[1]
-        self.filer = Filer(*self.data[2:9])
-        self.report_number = int(self.data[9])
-        self.is_original = self.report_number is 0
-        self.from_date = utils.string_to_date(self.data[10])
-        self.through_date = utils.string_to_date(self.data[11])
-
-        self.election = Election(*self.data[12:15])
+    def __unicode__(self):
+        return self.name
 
 
-class Contributor(object):
-    def __init__(self, type_of=None, last_name=None, first_name=None,
-            title=None, suffix=None, address_1=None, address_2=None,
-            city=None, state=None, zipcode=None):
-        self.type_of = type_of
-        self.is_individual = self.type_of == 'IND'
-        self.is_entity = self.type_of == 'ENT'
-
-        self.last_name = last_name
-        self.first_name = first_name
-        self.title = title
-        self.suffix = suffix
-        self.address_1 = address_1
-        self.address_2 = address_2
-        self.city = city
-        self.state = state
-        self.zipcode = zipcode
-
-    @property
-    def full_name(self):
-        return '{0} {1}'.format(self.first_name, self.last_name).strip()
+class Filer(models.Model):
+    filer_id = MaxCharField()
+    filer_type = models.ForeignKey(FilerType, related_name='filers')
+    last_name = OptionalMaxCharField()
+    first_name = OptionalMaxCharField()
+    name_prefix = OptionalMaxCharField()
+    name_suffix = OptionalMaxCharField()
+    nickname = OptionalMaxCharField()
 
 
-class Contribution(object):
-    def __init__(self, date, amount, description):
-        self.date = utils.string_to_date(date)
-        self.amount = float(amount) if amount else 0
-        self.description = description
+class FilingType(models.Model):
+    name = MaxCharField()
+
+    def __unicode__(self):
+        return self.name
 
 
-class Travel(object):
-    def __init__(self, last_name=None, first_name=None, title=None,
-            suffix=None, means_of=None, departure_location=None,
-            departure_date=None, destination=None, arrival_date=None,
-            purpose=None):
-        self.last_name = last_name
-        self.first_name = first_name
-        self.title = title
-        self.suffix = suffix
-        self.means_of = means_of
-        self.departure_location = departure_location
-        self.departure_date = utils.string_to_date(departure_date)
-        self.destination = destination
-        self.arrival_date = utils.string_to_date(arrival_date)
-        self.purpose = purpose
+class Employer(models.Model):
+    name = MaxCharField()
+
+    def __unicode__(self):
+        return self.name
 
 
-class Receipt(object):
-    is_out_of_state_pac = False
-
-    def __init__(self, data, report=None):
-        self.data = data
-        self.report = report
-        self.parse()
-
-    def parse(self):
-        self.name_of_schedule = self.data[1]
-        self.id = self.data[2]
-        self.contributor = Contributor(*self.data[3:13])
-        self.is_out_of_state_pac = bool(self.data[13])
-        self.fec_id = self.data[14] or None
-        self.contribution = Contribution(*self.data[15:18])
-        self.employer = self.data[18] or None
-        # TODO 19 and 20 are both job title?
-        self.job_title = self.data[19] or None
-
-        self.is_travel = bool(self.data[24])
-        if self.is_travel:
-            self.travel = Travel(*self.data[25:35])
-
-        self.parent_id = self.data[35] or None
-        if self.parent_id:
-            self.id = '%s-%s' % (self.parent_id, self.id)
-
-    @property
-    def parent(self):
-        if not self.parent_id:
-            return
-        if self.report is None:
-            raise Exception('Unable to locate parent (no report present)')
-        return self.report.find(id=self.parent_id)
+class Travel(models.Model):
+    last_name = MaxCharField()
+    first_name = MaxCharField()
+    title = MaxCharField()
+    suffix = MaxCharField()
+    means_of = MaxCharField()
+    departure_location = MaxCharField()
+    departure_date = models.DateField()
+    distination = MaxCharField()
+    arrival_date = models.DateField()
+    purpose = MaxCharField()
 
 
-class Report(object):
-    def __init__(self, raw_report=None):
-        self.raw_report = raw_report
-        self._initialized = False
-        if self.raw_report is not None:
-            self.parse()
-
-    def parse(self):
-        self.buckets = {}
-        self._receipts = None
-        self._cover = None
-        for line in self.raw_report.iter_lines(decode_unicode=True):
-            line_type = line.split(',', 1)[0]
-            if line_type not in self.buckets:
-                self.buckets[line_type] = []
-            self.buckets[line_type].append(line)
-        self._initialized = True
-
-    @require_initialization
-    def cover(self):
-        data = self.buckets['CVR'][0].split(',')
-        return Cover(data)
-
-    @require_initialization
-    def receipts(self):
-        if self._receipts is None:
-            self._receipts = []
-            data = StringIO(u"\n".join(self.buckets['RCPT']))
-            for row in UnicodeCSVReader(data):
-                self._receipts.append(Receipt(row, self))
-        return self._receipts
-
-    def search(self, **kwargs):
-        for r in self.receipts:
-            for attr, value in kwargs.items():
-                if getattr(r, attr) == value:
-                    yield r
-
-    def find(self, **kwargs):
-        return list(self.search(**kwargs))
-
-    def get(self, **kwargs):
-        result_set = self.search(**kwargs)
-        try:
-            result = result_set.next()
-            try:
-                result_set.next()
-                raise exceptions.MultipleFound
-            except StopIteration:
-                return result
-        except StopIteration:
-            raise exceptions.UnableToGet
+class Report(models.Model):
+    report_id = models.PositiveIntegerField()
+    report_number = models.PositiveIntegerField(default=0)
+    is_original = models.BooleanField(default=True)
+    from_date = models.DateField()
+    through_date = models.DateField()
+    # election = models.ForeignKey(tx_elections.Race)
 
     @property
     def total_receipts(self):
-        return sum([a.contribution.amount for a in self.receipts])
+        pass
 
 
-class FilingList(list):
-    def __init__(self, raw_filing_list=None):
-        self.raw_filing_list = raw_filing_list
-        self.parse()
+class ContributorType(models.Model):
+    name = MaxCharField()
 
-    def parse(self):
-        if self.raw_filing_list is None:
-            return
-
-        p = pq(self.raw_filing_list.text)
-        rows = p('table[bordercolor="#CCCCCC"] tr')
-
-        for row in rows.items():
-            self.append(Filing(row('td:first').html()))
-
-    def search(self, **kwargs):
-        for f in self:
-            for attr, value in kwargs.items():
-                if getattr(f, attr) == value:
-                    yield f
-
-    def find(self, **kwargs):
-        return list(self.search(**kwargs))
-
-    def get(self, **kwargs):
-        try:
-            result_set = self.search(**kwargs)
-            result = result_set.next()
-            try:
-                result_set.next()
-                raise exceptions.MultipleFound
-            except StopIteration:
-                return result
-        except StopIteration:
-            raise exceptions.UnableToGet
+    def __unicode__(self):
+        return self.name
 
 
-class Filing(object):
-    def __init__(self, raw_filing_data=None):
-        self.raw_filing_data = raw_filing_data
-        self._report = None
-        self.filing_method = None
-        self.parse()
+class Contributor(models.Model):
+    type_of = models.ForeignKey(ContributorType, related_name='contributors')
+    is_individual = models.BooleanField()
+    is_entity = models.BooleanField()
+    last_name = OptionalMaxCharField()
+    first_name = OptionalMaxCharField()
+    title = OptionalMaxCharField()
+    suffix = OptionalMaxCharField()
+    address_1 = OptionalMaxCharField()
+    address_2 = OptionalMaxCharField()
+    city = OptionalMaxCharField()
+    state = OptionalMaxCharField()
+    zipcode = OptionalMaxCharField()
 
-    def parse(self):
-        if not self.raw_filing_data:
-            return
 
-        doc = pq(self.raw_filing_data.strip()).html()
-        data = [x.strip() for x in doc.split('<br/>')]
+class Receipt(models.Model):
+    report = models.ForeignKey(Report, related_name='receipts')
+    parent = models.ForeignKey('self', related_name='children', blank=True,
+            null=True)
+    contributor = models.ForeignKey(Contributor, related_name='receipts')
+    date = models.DateField(null=True, blank=True)
+    amount = models.DecimalField(decimal_places=2, max_digits=12, null=True, blank=True)
+    description = models.CharField(max_length=250, null=True, blank=True)
+    employer = models.ForeignKey(Employer, null=True, blank=True)
+    job_title = models.CharField(max_length=250, null=True, blank=True)
+    travel = models.OneToOneField(Travel, related_name='receipt', null=True,
+            blank=True)
 
-        self.filer_name = data[0].split(' - ')[0]
-        self.report_id = utils.parse_num_from_string(data[1])
-        self.is_correction = 'Corrected Report' in data[1]
-        self.report_type = pq(data[2]).find('b').text()
-        self.report_due = utils.extract_filing_date(data[3])
-        self.report_filed = utils.extract_filing_date(data[4])
-        self.filing_method = data[5].split(':')[1].strip()
+    name_of_schedule = models.CharField(max_length=250)
+    receipt_id = models.CharField(max_length=250)
+    is_out_of_state_pac = models.BooleanField(default=False)
+    fec_id = models.fec_id = models.CharField(max_length=250, null=True,
+            blank=True)
 
-    @property
-    def is_downloadable(self):
-        return self.filing_method == 'Electronic'
+    class Meta:
+        ordering = ['date', ]
 
-    @property
-    def report(self):
-        if not self._report and self.raw_filing_data:
-            from . import fetcher
-            self._report = fetcher.get_report(self.report_id)
-        return self._report
+    # TODO fix naming once consuming side is fixed
+    def as_simple_dict(self):
+        return {
+            'city': self.contributor.city,
+            'first_name': self.contributor.first_name,
+            'suffix': self.contributor.suffix,
+            'zip': self.contributor.zipcode,
+            'last_entity_name': self.contributor.last_name,
+            'state': self.contributor.state,
+            'date': self.date,
+            'amt': self.amount,
+            'description': self.description,
+        }
+
+
+class ContributionsByAmount(models.Model):
+    name = MaxCharField()
+    low = models.DecimalField(decimal_places=2, max_digits=12)
+    high = models.DecimalField(decimal_places=2, max_digits=12)
+    amount = models.DecimalField(decimal_places=2, max_digits=12, default=0)
+    total = models.PositiveIntegerField(default=0)
+    report = models.ForeignKey(Report, related_name='stats_by_amount')
+
+    objects = managers.ContributionsByAmountManager()
+
+    class Meta:
+        ordering = ['low', ]
+
+    def refresh_stats(self):
+        qs = Receipt.objects.filter(amount__gte=self.low, amount__lte=self.high)
+        stats = qs.aggregate(amount=models.Sum('amount'),
+                total=models.Count('id'))
+        for k, v in stats.items():
+            setattr(self, k, v)
+
+    def __unicode__(self):
+        return u'{name} ${amount:0.2f} via {total} contribution(s)'.format(
+                name=self.name, amount=self.amount, total=self.total)
+
+    # TODO change this to match field names once consuming code is changed
+    def as_simple_dict(self):
+        return {'name': self.name, 'amt': self.amount}
+
+
+class ContributionsByDate(models.Model):
+    date = models.DateField()
+    amount = models.DecimalField(decimal_places=2, max_digits=12, default=0)
+    total = models.PositiveIntegerField(default=0)
+    report = models.ForeignKey(Report, related_name='stats_by_date')
+
+    objects = managers.ContributionsByDateManager()
+
+    class Meta:
+        ordering = ['date', ]
+
+    def refresh_stats(self):
+        stats = (Receipt.objects.filter(date=self.date).aggregate(
+                amount=models.Sum('amount'), total=models.Count('id')))
+        for k, v in stats.items():
+            setattr(self, k, v)
+
+    def __unicode__(self):
+        return u'{date} ${amount:0.2f} via {total} contribution(s)'.format(
+                date=self.date, amount=self.amount, total=self.total)
+
+    # TODO change this to match field names once consuming code is changed
+    def as_simple_dict(self):
+        return {'date': self.date, 'amt': self.amount}
+
+
+class ContributionsByState(models.Model):
+    state = models.CharField(max_length=250)
+    amount = models.DecimalField(decimal_places=2, max_digits=12, default=0)
+    total = models.PositiveIntegerField(default=0)
+    report = models.ForeignKey(Report, related_name='stats_by_state')
+
+    objects = managers.ContributionByStateManager()
+
+    class Meta:
+        ordering = ['-amount', ]
+
+    def __unicode__(self):
+        return u'{state} ${amount:0.2f} via {total} contribution(s)'.format(
+                state=self.state, amount=self.amount, total=self.total)
+
+    def refresh_stats(self):
+        stats = (Receipt.objects.filter(contributor__state=self.state)
+                .aggregate(amount=models.Sum('amount'),
+                        total=models.Count('id')))
+        for k, v in stats.items():
+            setattr(self, k, v)
+
+    # TODO change this to match field names once consuming code is changed
+    def as_simple_dict(self):
+        return {'state': self.state, 'amt': self.amount}
+
+
+class ContributionsByZipcode(models.Model):
+    zipcode = models.CharField(max_length=250)
+    amount = models.DecimalField(decimal_places=2, max_digits=12, default=0)
+    total = models.PositiveIntegerField(default=0)
+    report = models.ForeignKey(Report, related_name='stats_by_zipcode')
+
+    objects = managers.ContributionByZipcodeManager()
+
+    class Meta:
+        ordering = ['-amount', ]
+
+    def refresh_stats(self):
+        stats = (Receipt.objects.filter(contributor__zipcode=self.zipcode)
+                .aggregate(amount=models.Sum('amount'),
+                        total=models.Count('id')))
+        for k, v in stats.items():
+            setattr(self, k, v)
+
+    def __unicode__(self):
+        return u'{zipcode} ${amount:0.2f} via {total} contribution(s)'.format(
+                zipcode=self.zipcode, amount=self.amount, total=self.total)
+
+    # TODO change this to match field names once consuming code is changed
+    def as_simple_dict(self):
+        return {'zip': self.zipcode, 'amt': self.amount}
+
+
+class FilingMethod(models.Model):
+    method = models.CharField(max_length=250)
+
+    def __unicode__(self):
+        return self.method
+
+
+class Filing(models.Model):
+    report_id = models.CharField(max_length=250, unique=True, primary_key=True)
+    # TODO: Make this into a Filer
+    filer = models.ForeignKey(Filer, related_name='filings')
+    is_correction = models.BooleanField(default=False)
+    report_type = models.CharField(max_length=250)
+    report_due = models.DateField()
+    report_filed = models.DateField()
+    filing_method = models.ForeignKey(FilingMethod, related_name='filings')
+
+    class Meta:
+        get_latest_by = ['report_filed', ]
+
+
+signals.post_save.connect(ContributionsByAmount.objects.denormalize,
+        sender=Receipt)
+signals.post_save.connect(ContributionsByDate.objects.denormalize,
+        sender=Receipt)
+signals.post_save.connect(ContributionsByState.objects.denormalize,
+        sender=Receipt)
+signals.post_save.connect(ContributionsByZipcode.objects.denormalize,
+        sender=Receipt)
