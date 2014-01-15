@@ -1,4 +1,7 @@
 from django.db import models
+from django.db.models import signals
+
+from . import managers
 
 
 class MaxCharField(models.CharField):
@@ -114,6 +117,75 @@ class Receipt(models.Model):
             blank=True)
 
 
+class ContributionsByAmount(models.Model):
+    name = MaxCharField()
+    low = models.DecimalField(decimal_places=2, max_digits=12)
+    high = models.DecimalField(decimal_places=2, max_digits=12)
+    amount = models.DecimalField(decimal_places=2, max_digits=12, default=0)
+    total = models.PositiveIntegerField(default=0)
+    report = models.ForeignKey(Report, related_name='stats_by_amount')
+
+    objects = managers.ContributionsByAmountManager()
+
+    def refresh_stats(self):
+        qs = Receipt.objects.filter(amount__gte=self.low, amount__lte=self.high)
+        stats = qs.aggregate(amount=models.Sum('amount'),
+                total=models.Count('id'))
+        for k, v in stats.items():
+            setattr(self, k, v)
+
+
+class ContributionsByDate(models.Model):
+    date = models.DateField()
+    amount = models.DecimalField(decimal_places=2, max_digits=12, default=0)
+    total = models.PositiveIntegerField(default=0)
+    report = models.ForeignKey(Report, related_name='stats_by_date')
+
+    objects = managers.ContributionsByDateManager()
+
+    def refresh_stats(self):
+        stats = (Receipt.objects.filter(date=self.date).aggregate(
+                amount=models.Sum('amount'), total=models.Count('id')))
+        for k, v in stats.items():
+            setattr(self, k, v)
+
+
+class ContributionsByState(models.Model):
+    state = models.CharField(max_length=250)
+    amount = models.DecimalField(decimal_places=2, max_digits=12, default=0)
+    total = models.PositiveIntegerField(default=0)
+    report = models.ForeignKey(Report, related_name='stats_by_state')
+
+    objects = managers.ContributionByStateManager()
+
+    def __unicode__(self):
+        return u'{state} ${amount:0.2f} via {total} contribution(s)'.format(
+                state=self.state, amount=self.amount, total=self.total)
+
+    def refresh_stats(self):
+        stats = (Receipt.objects.filter(contributor__state=self.state)
+                .aggregate(amount=models.Sum('amount'),
+                        total=models.Count('id')))
+        for k, v in stats.items():
+            setattr(self, k, v)
+
+
+class ContributionsByZipcode(models.Model):
+    zipcode = models.CharField(max_length=250)
+    amount = models.DecimalField(decimal_places=2, max_digits=12, default=0)
+    total = models.PositiveIntegerField(default=0)
+    report = models.ForeignKey(Report, related_name='stats_by_zipcode')
+
+    objects = managers.ContributionByZipcodeManager()
+
+    def refresh_stats(self):
+        stats = (Receipt.objects.filter(contributor__zipcode=self.zipcode)
+                .aggregate(amount=models.Sum('amount'),
+                        total=models.Count('id')))
+        for k, v in stats.items():
+            setattr(self, k, v)
+
+
 class FilingMethod(models.Model):
     method = models.CharField(max_length=250)
 
@@ -133,3 +205,13 @@ class Filing(models.Model):
 
     class Meta:
         get_latest_by = ['report_filed', ]
+
+
+signals.post_save.connect(ContributionsByAmount.objects.denormalize,
+        sender=Receipt)
+signals.post_save.connect(ContributionsByDate.objects.denormalize,
+        sender=Receipt)
+signals.post_save.connect(ContributionsByState.objects.denormalize,
+        sender=Receipt)
+signals.post_save.connect(ContributionsByZipcode.objects.denormalize,
+        sender=Receipt)
