@@ -4,3 +4,4 @@ dist/
 *.pyc
 *.pyo
 .tox
+example/project.db
