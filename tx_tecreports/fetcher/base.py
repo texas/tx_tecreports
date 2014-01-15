@@ -12,7 +12,7 @@ def fetch_raw_report(report_id):
 
 def get_report(report_id):
     raw_report = fetch_raw_report(report_id)
-    return models.Report(raw_report=raw_report)
+    return models.Report(report_id=report_id, raw_report=raw_report)
 
 
 def fetch_filing_list(filer_id):

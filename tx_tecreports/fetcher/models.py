@@ -206,7 +206,8 @@ class Receipt(object):
 
 
 class Report(object):
-    def __init__(self, raw_report=None):
+    def __init__(self, report_id=None, raw_report=None):
+        self.report_id = report_id
         self.raw_report = raw_report
         self._initialized = False
         if self.raw_report is not None:
@@ -267,6 +268,7 @@ class Report(object):
 
         # TODO: Save Race data
         kwargs = {
+            'report_id': self.report_id,
             'report_number': self.cover.report_number,
             'is_original': self.cover.is_original,
             'from_date': self.cover.from_date,

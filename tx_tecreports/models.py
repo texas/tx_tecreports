@@ -64,6 +64,7 @@ class Travel(models.Model):
 
 
 class Report(models.Model):
+    report_id = models.PositiveIntegerField()
     report_number = models.PositiveIntegerField(default=0)
     is_original = models.BooleanField(default=True)
     from_date = models.DateField()
@@ -116,6 +117,23 @@ class Receipt(models.Model):
     fec_id = models.fec_id = models.CharField(max_length=250, null=True,
             blank=True)
 
+    class Meta:
+        ordering = ['date', ]
+
+    # TODO fix naming once consuming side is fixed
+    def as_simple_dict(self):
+        return {
+            'city': self.contributor.city,
+            'first_name': self.contributor.first_name,
+            'suffix': self.contributor.suffix,
+            'zip': self.contributor.zipcode,
+            'last_entity_name': self.contributor.last_name,
+            'state': self.contributor.state,
+            'date': self.date,
+            'amt': self.amount,
+            'description': self.description,
+        }
+
 
 class ContributionsByAmount(models.Model):
     name = MaxCharField()
@@ -126,6 +144,9 @@ class ContributionsByAmount(models.Model):
     report = models.ForeignKey(Report, related_name='stats_by_amount')
 
     objects = managers.ContributionsByAmountManager()
+
+    class Meta:
+        ordering = ['low', ]
 
     def refresh_stats(self):
         qs = Receipt.objects.filter(amount__gte=self.low, amount__lte=self.high)
@@ -138,6 +159,10 @@ class ContributionsByAmount(models.Model):
         return u'{name} ${amount:0.2f} via {total} contribution(s)'.format(
                 name=self.name, amount=self.amount, total=self.total)
 
+    # TODO change this to match field names once consuming code is changed
+    def as_simple_dict(self):
+        return {'name': self.name, 'amt': self.amount}
+
 
 class ContributionsByDate(models.Model):
     date = models.DateField()
@@ -146,6 +171,9 @@ class ContributionsByDate(models.Model):
     report = models.ForeignKey(Report, related_name='stats_by_date')
 
     objects = managers.ContributionsByDateManager()
+
+    class Meta:
+        ordering = ['date', ]
 
     def refresh_stats(self):
         stats = (Receipt.objects.filter(date=self.date).aggregate(
@@ -157,6 +185,10 @@ class ContributionsByDate(models.Model):
         return u'{date} ${amount:0.2f} via {total} contribution(s)'.format(
                 date=self.date, amount=self.amount, total=self.total)
 
+    # TODO change this to match field names once consuming code is changed
+    def as_simple_dict(self):
+        return {'date': self.date, 'amt': self.amount}
+
 
 class ContributionsByState(models.Model):
     state = models.CharField(max_length=250)
@@ -165,6 +197,9 @@ class ContributionsByState(models.Model):
     report = models.ForeignKey(Report, related_name='stats_by_state')
 
     objects = managers.ContributionByStateManager()
+
+    class Meta:
+        ordering = ['-amount', ]
 
     def __unicode__(self):
         return u'{state} ${amount:0.2f} via {total} contribution(s)'.format(
@@ -177,6 +212,10 @@ class ContributionsByState(models.Model):
         for k, v in stats.items():
             setattr(self, k, v)
 
+    # TODO change this to match field names once consuming code is changed
+    def as_simple_dict(self):
+        return {'state': self.state, 'amt': self.amount}
+
 
 class ContributionsByZipcode(models.Model):
     zipcode = models.CharField(max_length=250)
@@ -185,6 +224,9 @@ class ContributionsByZipcode(models.Model):
     report = models.ForeignKey(Report, related_name='stats_by_zipcode')
 
     objects = managers.ContributionByZipcodeManager()
+
+    class Meta:
+        ordering = ['-amount', ]
 
     def refresh_stats(self):
         stats = (Receipt.objects.filter(contributor__zipcode=self.zipcode)
@@ -196,6 +238,10 @@ class ContributionsByZipcode(models.Model):
     def __unicode__(self):
         return u'{zipcode} ${amount:0.2f} via {total} contribution(s)'.format(
                 zipcode=self.zipcode, amount=self.amount, total=self.total)
+
+    # TODO change this to match field names once consuming code is changed
+    def as_simple_dict(self):
+        return {'zip': self.zipcode, 'amt': self.amount}
 
 
 class FilingMethod(models.Model):

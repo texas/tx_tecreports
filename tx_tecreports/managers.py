@@ -10,7 +10,13 @@ AMOUNT_BUCKETS = [
     {'name': 'more_100k', 'low': 100000, 'high': 1000000000},
 ]
 
-class ContributionsByAmountManager(models.Manager):
+
+class AsSimpleDictMixin(object):
+    def as_simple_dict(self):
+        return [a.as_simple_dict() for a in self]
+
+
+class ContributionsByAmountManager(AsSimpleDictMixin, models.Manager):
     use_for_related_fields = True
 
     def denormalize(self, sender, instance=None, **kwargs):
@@ -32,7 +38,7 @@ class ContributionsByAmountManager(models.Manager):
         stats.save()
 
 
-class ContributionsByDateManager(models.Manager):
+class ContributionsByDateManager(AsSimpleDictMixin, models.Manager):
     use_for_related_fields = True
 
     def denormalize(self, sender, instance=None, **kwargs):
@@ -44,7 +50,7 @@ class ContributionsByDateManager(models.Manager):
         stats.save()
 
 
-class ContributionByZipcodeManager(models.Manager):
+class ContributionByZipcodeManager(AsSimpleDictMixin, models.Manager):
     use_for_related_fields = True
 
     def denormalize(self, sender, instance=None, **kwargs):
@@ -56,7 +62,7 @@ class ContributionByZipcodeManager(models.Manager):
         stats.save()
 
 
-class ContributionByStateManager(models.Manager):
+class ContributionByStateManager(AsSimpleDictMixin, models.Manager):
     use_for_related_fields = True
 
     def denormalize(self, sender, instance=None, **kwargs):
