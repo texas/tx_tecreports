@@ -148,8 +148,9 @@ class ContributionsByAmount(models.Model):
     class Meta:
         ordering = ['low', ]
 
-    def refresh_stats(self):
-        qs = Receipt.objects.filter(amount__gte=self.low, amount__lte=self.high)
+    def refresh_stats(self, report):
+        qs = Receipt.objects.filter(report=report, amount__gte=self.low,
+                amount__lte=self.high)
         stats = qs.aggregate(amount=models.Sum('amount'),
                 total=models.Count('id'))
         for k, v in stats.items():
@@ -175,9 +176,10 @@ class ContributionsByDate(models.Model):
     class Meta:
         ordering = ['date', ]
 
-    def refresh_stats(self):
-        stats = (Receipt.objects.filter(date=self.date).aggregate(
-                amount=models.Sum('amount'), total=models.Count('id')))
+    def refresh_stats(self, report):
+        stats = (Receipt.objects.filter(report=report, date=self.date)
+                .aggregate(amount=models.Sum('amount'),
+                        total=models.Count('id')))
         for k, v in stats.items():
             setattr(self, k, v)
 
@@ -205,8 +207,9 @@ class ContributionsByState(models.Model):
         return u'{state} ${amount:0.2f} via {total} contribution(s)'.format(
                 state=self.state, amount=self.amount, total=self.total)
 
-    def refresh_stats(self):
-        stats = (Receipt.objects.filter(contributor__state=self.state)
+    def refresh_stats(self, report):
+        stats = (Receipt.objects
+                .filter(report=report, contributor__state=self.state)
                 .aggregate(amount=models.Sum('amount'),
                         total=models.Count('id')))
         for k, v in stats.items():
@@ -228,8 +231,9 @@ class ContributionsByZipcode(models.Model):
     class Meta:
         ordering = ['-amount', ]
 
-    def refresh_stats(self):
-        stats = (Receipt.objects.filter(contributor__zipcode=self.zipcode)
+    def refresh_stats(self, report):
+        stats = (Receipt.objects
+                .filter(report=report, contributor__zipcode=self.zipcode)
                 .aggregate(amount=models.Sum('amount'),
                         total=models.Count('id')))
         for k, v in stats.items():
