@@ -233,7 +233,7 @@ class Report(object):
     def receipts(self):
         if self._receipts is None:
             self._receipts = []
-            data = StringIO(u"\n".join(self.buckets['RCPT']))
+            data = StringIO(u"\n".join(self.buckets.get('RCPT', [])))
             for row in UnicodeCSVReader(data):
                 self._receipts.append(Receipt(row, self))
         return self._receipts

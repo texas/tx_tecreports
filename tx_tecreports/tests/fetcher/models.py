@@ -17,6 +17,8 @@ SAMPLE_INDIVIDUAL_RECEIPT_LINE = 'RCPT,A1,98,IND,Champion,Nancy,,,,,Fort Worth,T
 SAMPLE_TRAVEL_LINE = 'RCPT,A1,634,IND,Patton,Robert,,,,,Fort Worth,TX,76107-4878,,,20130805,8000.00,(See travel info),Self-employed,Investor,,,,,X,Patton,Robert,,,Private airplane,Fort Worth TX,20130805,Washington DC (Dulles),20130805,Attend National Press Club event,'
 SAMPLE_TRAVEL_SUB_RECEIPT_LINE = 'RCPT,A1,10,,,,,,,,,,,,,,,,,,,,,,X,Davis,Wendy,,,Private airplane,Washington DC (Dulles),20130805,Austin TX,20130805,Return from National Press Club event,634'
 
+test_file = lambda s: os.path.join(EXAMPLE_FILE_PATH, s)
+
 
 class ElectionTest(unittest.TestCase):
     def test_has_none_for_all_properties_by_default(self):
@@ -247,6 +249,18 @@ class TravelTestCase(unittest.TestCase):
         self.assertEqual(datetime.date(2000, 1, 1), t.arrival_date)
 
 
+def create_mock_report(contents):
+    iter_lines = mock.Mock(callable=True, return_value=contents)
+    raw_report = mock.Mock(iter_lines=iter_lines)
+    return raw_report
+
+
+def generate_report_from_file(filename):
+    with open(test_file(filename)) as f:
+        lines = f.readlines()
+    return create_mock_report(lines)
+
+
 def generate_mock_report():
     simple_report = [
         SAMPLE_CVR_LINE,
@@ -255,9 +269,7 @@ def generate_mock_report():
         SAMPLE_TRAVEL_LINE,
         SAMPLE_TRAVEL_SUB_RECEIPT_LINE,
     ]
-    iter_lines = mock.Mock(callable=True, return_value=simple_report)
-    raw_report = mock.Mock(iter_lines=iter_lines)
-    return raw_report
+    return create_mock_report(simple_report)
 
 
 class ReportTestCase(unittest.TestCase):
@@ -298,6 +310,15 @@ class ParsingReportTestCase(unittest.TestCase):
         # smoke test to ensure there's an empty contribution
         receipt = self.report.get(id='634-10')
         self.assertEqual(0, receipt.contribution.amount)
+
+
+class ReportWithJustSummary(unittest.TestCase):
+    def setUp(self):
+        raw_report = generate_report_from_file('pena.csv')
+        self.report = models.Report(raw_report=raw_report)
+
+    def test_has_empty_receipts(self):
+        self.assertEqual(0, len(self.report.receipts))
 
 
 class FindingReceiptsInReportTestCase(unittest.TestCase):
