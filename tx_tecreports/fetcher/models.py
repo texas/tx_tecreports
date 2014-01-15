@@ -1,3 +1,4 @@
+import decimal
 # Try to use Python3 here
 try:
     from io import StringIO
@@ -205,6 +206,24 @@ class Receipt(object):
         return receipt
 
 
+def summary_property(key1, key2):
+    def inner(self):
+        if not 'SMRY' in self.buckets:
+            return 0
+        for row in self.buckets['SMRY']:
+            row = row.split(',')
+            if not row[1] in key1:
+                continue
+            if row[2] == key2:
+                return decimal.Decimal(row[3])
+        return 0
+    return property(inner)
+
+
+def simple_summary_property(key2):
+    return summary_property(['COH', 'SCCOH'], key2)
+
+
 class Report(object):
     def __init__(self, report_id=None, raw_report=None):
         self.report_id = report_id
@@ -223,6 +242,15 @@ class Report(object):
                 self.buckets[line_type] = []
             self.buckets[line_type].append(line)
         self._initialized = True
+
+    unitemized_contributions = simple_summary_property('1')
+    total_contributions = simple_summary_property('2')
+    unitemized_expenditures = simple_summary_property('3')
+    total_expenditures = simple_summary_property('4')
+    outstanding_loans = simple_summary_property('5')
+    cash_on_hand = simple_summary_property('6')
+    unitemized_pledges = summary_property(['B1', ], '4')
+    unitemized_loans = summary_property(['E', ], '4')
 
     @require_initialization
     def cover(self):

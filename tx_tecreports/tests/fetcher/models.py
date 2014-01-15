@@ -1,4 +1,5 @@
 import datetime
+import decimal
 import os
 import random
 import unittest
@@ -319,6 +320,66 @@ class ReportWithJustSummary(unittest.TestCase):
 
     def test_has_empty_receipts(self):
         self.assertEqual(0, len(self.report.receipts))
+
+    def test_has_unitemized_contributions(self):
+        self.assertEqual(0, self.report.unitemized_contributions)
+
+    def test_has_total_contributions(self):
+        self.assertEqual(0, self.report.total_contributions)
+
+    def test_has_unitemized_expenditures(self):
+        self.assertEqual(0, self.report.unitemized_expenditures)
+
+    def test_has_total_expenditures(self):
+        self.assertEqual(decimal.Decimal('750.00'),
+                self.report.total_expenditures)
+
+    def test_has_outstanding_loans(self):
+        self.assertEqual(0, self.report.outstanding_loans)
+
+    def test_has_cash_on_hand(self):
+        self.assertEqual(0, self.report.cash_on_hand)
+
+    def test_has_unitemized_pledges(self):
+        self.assertEqual(0, self.report.unitemized_pledges)
+
+    def test_has_unitemized_loans(self):
+        self.assertEqual(0, self.report.unitemized_loans)
+
+
+class VerifySummaryDataInReport(unittest.TestCase):
+    def setUp(self):
+        raw_report = generate_report_from_file('davis.csv')
+        self.report = models.Report(raw_report=raw_report)
+
+    def test_has_unitemized_contributions(self):
+        expected = decimal.Decimal('271213.75')
+        self.assertEqual(expected, self.report.unitemized_contributions)
+
+    def test_has_total_contributions(self):
+        expected = decimal.Decimal('933470.50')
+        self.assertEqual(expected, self.report.total_contributions)
+
+    def test_has_unitemized_expenditures(self):
+        expected = decimal.Decimal('2106.83')
+        self.assertEqual(expected, self.report.unitemized_expenditures)
+
+    def test_has_total_expenditures(self):
+        expected = decimal.Decimal('292657.07')
+        self.assertEqual(expected, self.report.total_expenditures)
+
+    def test_has_cash_on_hand(self):
+        expected = decimal.Decimal('1063108.05')
+        self.assertEqual(expected, self.report.cash_on_hand)
+
+    def test_has_outstanding_loans(self):
+        self.assertEqual(0, self.report.outstanding_loans)
+
+    def test_has_unitemized_pledges(self):
+        self.assertEqual(0, self.report.unitemized_pledges)
+
+    def test_has_unitemized_loans(self):
+        self.assertEqual(0, self.report.unitemized_loans)
 
 
 class FindingReceiptsInReportTestCase(unittest.TestCase):
