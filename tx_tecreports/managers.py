@@ -18,11 +18,28 @@ class AsSimpleDictMixin(object):
         return [a.as_simple_dict() for a in self]
 
 
-class ContributionsByAmountManager(AsSimpleDictMixin, models.Manager):
+class StatsManager(object):
+    def update_stats(self, **kwargs):
+        report = kwargs['report']
+        if report.is_being_processed:
+            return
+        stats, created = self.model.objects.get_or_create(**kwargs)
+        stats.refresh_stats(report=report)
+        stats.save()
+        return stats
+
+
+class ContributionsByAmountManager(AsSimpleDictMixin, StatsManager,
+        models.Manager):
     use_for_related_fields = True
 
+    def full_denormalize(self, report):
+        for bucket in AMOUNT_BUCKETS:
+            self.update_stats(report=report, **bucket)
+
     def denormalize(self, sender, instance=None, **kwargs):
-        if instance is None or not instance.amount:
+        if (instance is None or not instance.amount
+                or instance.report.is_being_processed):
             return
         found = False
 
@@ -33,44 +50,62 @@ class ContributionsByAmountManager(AsSimpleDictMixin, models.Manager):
                 break
         if not found:
             raise Exception("WTF?")
-        # import ipdb; ipdb.set_trace()
-        stats, created = self.model.objects.get_or_create(
-                report=instance.report, **bucket)
-        stats.refresh_stats(report=instance.report)
-        stats.save()
+        self.update_stats(report=instance.report, **bucket)
 
 
-class ContributionsByDateManager(AsSimpleDictMixin, models.Manager):
+class ContributionsByDateManager(AsSimpleDictMixin, StatsManager,
+        models.Manager):
     use_for_related_fields = True
+
+    def full_denormalize(self, report):
+        dates = (report.receipts
+                .exclude(date=None)
+                .values('date')
+                .annotate(total=models.Count('id')))
+        for record in dates:
+            self.update_stats(report=report, date=record['date'])
 
     def denormalize(self, sender, instance=None, **kwargs):
         if instance is None or not instance.date:
             return
-        stats, created = self.model.objects.get_or_create(date=instance.date,
+        self.update_stats(report=instance.report, date=instance.date)
+
+
+class ContributionByZipcodeManager(AsSimpleDictMixin, StatsManager,
+        models.Manager):
+    use_for_related_fields = True
+
+    def _full_denormalize(self, report):
+        zipcodes = (report.receipts
+                .exclude(contributor__zipcode_short=None)
+                .values('contributor__zipcode_short')
+                .annotate(total=models.Count('id')))
+        for record in zipcodes:
+            self.update_stats(report=report,
+                    zipcode=record['contributor__zipcode_short'])
+
+    def denormalize(self, sender, instance=None, **kwargs):
+        if instance is None or not instance.contributor.zipcode_short:
+            return
+        self.update_stats(report=instance.report,
+                zipcode=instance.contributor.zipcode_short)
+
+
+class ContributionByStateManager(AsSimpleDictMixin, StatsManager,
+        models.Manager):
+    use_for_related_fields = True
+
+    def full_denormalize(self, report):
+        states = (report.receipts
+                .exclude(contributor__state=None)
+                .values('contributor__state')
+                .annotate(total=models.Count('id')))
+        for record in states:
+            self.update_stats(report=report, state=record['contributor__state'])
+
+    def denormalize(self, sender, instance=None, **kwargs):
+        if (instance is None or not instance.contributor.state
+                or instance.report.is_being_processed):
+            return
+        self.update_stats(state=instance.contributor.state,
                 report=instance.report)
-        stats.refresh_stats(report=instance.report)
-        stats.save()
-
-
-class ContributionByZipcodeManager(AsSimpleDictMixin, models.Manager):
-    use_for_related_fields = True
-
-    def denormalize(self, sender, instance=None, **kwargs):
-        if instance is None or not instance.contributor.zipcode:
-            return
-        stats, created = self.model.objects.get_or_create(
-                report=instance.report, zipcode=instance.contributor.zipcode)
-        stats.refresh_stats(report=instance.report)
-        stats.save()
-
-
-class ContributionByStateManager(AsSimpleDictMixin, models.Manager):
-    use_for_related_fields = True
-
-    def denormalize(self, sender, instance=None, **kwargs):
-        if instance is None or not instance.contributor.state:
-            return
-        stats, created = self.model.objects.get_or_create(
-                state=instance.contributor.state, report=instance.report)
-        stats.refresh_stats(report=instance.report)
-        stats.save()

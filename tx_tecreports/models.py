@@ -67,9 +67,16 @@ class Report(models.Model):
     unitemized_loans = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     # election = models.ForeignKey(tx_elections.Race)
 
+    is_being_processed = models.BooleanField(default=False)
+
     @property
     def total_receipts(self):
         pass
+
+    def full_denormalize(self):
+        for a in self._meta.get_all_related_objects():
+            if hasattr(a.model.objects, 'full_denormalize'):
+                a.model.objects.full_denormalize(self)
 
 
 class ContributorType(models.Model):
@@ -92,6 +99,12 @@ class Contributor(models.Model):
     city = OptionalMaxCharField()
     state = OptionalMaxCharField()
     zipcode = OptionalMaxCharField()
+    zipcode_short = models.CharField(max_length=5, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.zipcode_short and self.zipcode:
+            self.zipcode_short = self.zipcode[:5]
+        return super(Contributor, self).save(*args, **kwargs)
 
 
 class Receipt(models.Model):
@@ -149,8 +162,12 @@ class ContributionsByAmount(models.Model):
                 amount__lte=self.high)
         stats = qs.aggregate(amount=models.Sum('amount'),
                 total=models.Count('id'))
-        for k, v in stats.items():
-            setattr(self, k, v)
+        if stats:
+            for k, v in stats.items():
+                setattr(self, k, v if v else 0)
+        else:
+            self.amount = 0
+            self.total = 0
 
     def __unicode__(self):
         return u'{name} ${amount:0.2f} via {total} contribution(s)'.format(
@@ -229,7 +246,7 @@ class ContributionsByZipcode(models.Model):
 
     def refresh_stats(self, report):
         stats = (Receipt.objects
-                .filter(report=report, contributor__zipcode=self.zipcode)
+                .filter(report=report, contributor__zipcode_short=self.zipcode)
                 .aggregate(amount=models.Sum('amount'),
                         total=models.Count('id')))
         for k, v in stats.items():
@@ -271,5 +288,6 @@ signals.post_save.connect(ContributionsByDate.objects.denormalize,
         sender=Receipt)
 signals.post_save.connect(ContributionsByState.objects.denormalize,
         sender=Receipt)
-signals.post_save.connect(ContributionsByZipcode.objects.denormalize,
-        sender=Receipt)
+# Disconnected for speed
+# signals.post_save.connect(ContributionsByZipcode.objects.denormalize,
+#         sender=Receipt)

@@ -4,7 +4,6 @@ try:
     from io import StringIO
 except ImportError:
     from StringIO import StringIO
-import re
 
 from pyquery import PyQuery as pq
 from unicsv import UnicodeCSVReader
@@ -240,7 +239,7 @@ class Report(object):
             line_type = line.split(',', 1)[0]
             if line_type not in self.buckets:
                 self.buckets[line_type] = []
-            self.buckets[line_type].append(line)
+            self.buckets[line_type].append(line.strip())
         self._initialized = True
 
     unitemized_contributions = simple_summary_property('1')
@@ -313,8 +312,17 @@ class Report(object):
             'unitemized_loans': self.unitemized_loans,
         }
         report, created = models.Report.objects.get_or_create(**kwargs)
+
+        # After we've retreived it, mark it as being processed.
+        report.is_being_processed = True
+        report.save()
         for receipt in self.receipts:
             receipt.save(report=report)
+
+        # Turn on denormalization and run that
+        report.is_being_processed = False
+        report.save()
+        report.full_denormalize()
         return report
 
 
