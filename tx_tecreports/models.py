@@ -67,9 +67,16 @@ class Report(models.Model):
     unitemized_loans = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     # election = models.ForeignKey(tx_elections.Race)
 
+    is_being_processed = models.BooleanField(default=False)
+
     @property
     def total_receipts(self):
         pass
+
+    def full_denormalize(self):
+        for a in self._meta.get_all_related_objects():
+            if hasattr(a.model.objects, 'full_denormalize'):
+                a.model.objects.full_denormalize(self)
 
 
 class ContributorType(models.Model):
