@@ -240,7 +240,7 @@ class Report(object):
             line_type = line.split(',', 1)[0]
             if line_type not in self.buckets:
                 self.buckets[line_type] = []
-            self.buckets[line_type].append(line)
+            self.buckets[line_type].append(line.strip())
         self._initialized = True
 
     unitemized_contributions = simple_summary_property('1')
