@@ -77,18 +77,18 @@ class ContributionByZipcodeManager(AsSimpleDictMixin, StatsManager,
 
     def full_denormalize(self, report):
         zipcodes = (report.receipts
-                .exclude(contributor__zipcode=None)
-                .values('contributor__zipcode')
+                .exclude(contributor__zipcode_short=None)
+                .values('contributor__zipcode_short')
                 .annotate(total=models.Count('id')))
         for record in zipcodes:
             self.update_stats(report=report,
-                    zipcode=record['contributor__zipcode'])
+                    zipcode=record['contributor__zipcode_short'])
 
     def denormalize(self, sender, instance=None, **kwargs):
-        if instance is None or not instance.contributor.zipcode:
+        if instance is None or not instance.contributor.zipcode_short:
             return
         self.update_stats(report=instance.report,
-                zipcode=instance.contributor.zipcode)
+                zipcode=instance.contributor.zipcode_short)
 
 
 class ContributionByStateManager(AsSimpleDictMixin, StatsManager,

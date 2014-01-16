@@ -99,6 +99,12 @@ class Contributor(models.Model):
     city = OptionalMaxCharField()
     state = OptionalMaxCharField()
     zipcode = OptionalMaxCharField()
+    zipcode_short = models.CharField(max_length=5, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.zipcode_short and self.zipcode:
+            self.zipcode_short = self.zipcode[:5]
+        return super(Contributor, self).save(*args, **kwargs)
 
 
 class Receipt(models.Model):
@@ -236,7 +242,7 @@ class ContributionsByZipcode(models.Model):
 
     def refresh_stats(self, report):
         stats = (Receipt.objects
-                .filter(report=report, contributor__zipcode=self.zipcode)
+                .filter(report=report, contributor__zipcode_short=self.zipcode)
                 .aggregate(amount=models.Sum('amount'),
                         total=models.Count('id')))
         for k, v in stats.items():
