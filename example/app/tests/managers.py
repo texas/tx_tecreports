@@ -205,12 +205,12 @@ class ContributionsByZipcodeManagerTestCase(GenericStatsTestCase):
     @property
     def generic_south_austin_contributor(self):
         return self.generate_contributor(is_individual=True, is_entity=False,
-                zipcode=78704)
+                zipcode='78704')
 
     @property
     def generic_east_austin_contributor(self):
         return self.generate_contributor(is_individual=True, is_entity=False,
-                zipcode=78702)
+                zipcode='78702')
 
     def test_is_called_on_save(self):
         self.assertEqual(0, models.ContributionsByZipcode.objects.count(),
