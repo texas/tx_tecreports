@@ -253,7 +253,9 @@ class Report(object):
 
     @require_initialization
     def cover(self):
-        data = self.buckets['CVR'][0].split(',')
+        f = StringIO(unicode(self.buckets['CVR'][0]))
+        reader = UnicodeCSVReader(f)
+        data = reader.next()
         return Cover(data)
 
     @require_initialization

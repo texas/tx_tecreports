@@ -3,8 +3,13 @@ import decimal
 import os
 import random
 import unittest
+try:
+    from io import StringIO
+except ImportError:
+    from StringIO import StringIO
 
 import mock
+from unicsv import UnicodeCSVReader
 
 from ...fetcher import exceptions
 from ...fetcher import models
@@ -41,10 +46,19 @@ class ElectionTest(unittest.TestCase):
 
 
 class BaseCoverTest(unittest.TestCase):
-    data = SAMPLE_CVR_LINE.split(',')
+    data = SAMPLE_CVR_LINE
 
     def setUp(self):
-        self.cover = models.Cover(self.data)
+        f = StringIO(unicode(self.data))
+        reader = UnicodeCSVReader(f)
+        self.cover = models.Cover(reader.next())
+
+
+class TrickyTestCase(BaseCoverTest):
+    data = 'CVR,SPAC,00069581,ENT,"Wendy R. Davis for Governor, Inc.",,,,,0,20130701,20131231,20140304,P,,X,,,,,,,,,,,,,,,,,P.O. Box 1039,,Fort Worth,TX,76101,,Davis,Wendy R.,,,,P.O. Box 1039,,Fort Worth,TX,76101,8178868863,,P.O. Box 1039,,Fort Worth,TX,76101,,,,,,,,,,,,,,,,,,,,,,,,,Wendy R. Davis,,,,,,,,'
+
+    def test_has_a_zero_for_report_number(self):
+        self.assertTrue(self.cover.report_number is 0)
 
 
 class CoverTest(BaseCoverTest):
