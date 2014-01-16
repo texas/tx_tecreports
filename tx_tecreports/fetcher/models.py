@@ -4,7 +4,6 @@ try:
     from io import StringIO
 except ImportError:
     from StringIO import StringIO
-import re
 
 from pyquery import PyQuery as pq
 from unicsv import UnicodeCSVReader
