@@ -162,8 +162,12 @@ class ContributionsByAmount(models.Model):
                 amount__lte=self.high)
         stats = qs.aggregate(amount=models.Sum('amount'),
                 total=models.Count('id'))
-        for k, v in stats.items():
-            setattr(self, k, v)
+        if stats:
+            for k, v in stats.items():
+                setattr(self, k, v if v else 0)
+        else:
+            self.amount = 0
+            self.total = 0
 
     def __unicode__(self):
         return u'{name} ${amount:0.2f} via {total} contribution(s)'.format(
