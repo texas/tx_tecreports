@@ -310,10 +310,12 @@ class Report(object):
             'cash_on_hand': self.cash_on_hand,
             'unitemized_pledges': self.unitemized_pledges,
             'unitemized_loans': self.unitemized_loans,
-
-            'is_being_processed': True,  # Don't calculate stats immeidately
         }
         report, created = models.Report.objects.get_or_create(**kwargs)
+
+        # After we've retreived it, mark it as being processed.
+        report.is_being_processed = True
+        report.save()
         for receipt in self.receipts:
             receipt.save(report=report)
 
