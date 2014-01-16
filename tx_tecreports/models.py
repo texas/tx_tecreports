@@ -288,5 +288,6 @@ signals.post_save.connect(ContributionsByDate.objects.denormalize,
         sender=Receipt)
 signals.post_save.connect(ContributionsByState.objects.denormalize,
         sender=Receipt)
-signals.post_save.connect(ContributionsByZipcode.objects.denormalize,
-        sender=Receipt)
+# Disconnected for speed
+# signals.post_save.connect(ContributionsByZipcode.objects.denormalize,
+#         sender=Receipt)

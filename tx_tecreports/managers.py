@@ -75,7 +75,7 @@ class ContributionByZipcodeManager(AsSimpleDictMixin, StatsManager,
         models.Manager):
     use_for_related_fields = True
 
-    def full_denormalize(self, report):
+    def _full_denormalize(self, report):
         zipcodes = (report.receipts
                 .exclude(contributor__zipcode_short=None)
                 .values('contributor__zipcode_short')
