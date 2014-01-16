@@ -33,7 +33,6 @@ class ContributionsByAmountManager(AsSimpleDictMixin, models.Manager):
                 break
         if not found:
             raise Exception("WTF?")
-        # import ipdb; ipdb.set_trace()
         stats, created = self.model.objects.get_or_create(
                 report=instance.report, **bucket)
         stats.refresh_stats(report=instance.report)
