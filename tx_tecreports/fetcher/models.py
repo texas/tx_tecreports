@@ -220,7 +220,13 @@ def summary_property(key1, key2):
 
 
 def simple_summary_property(key2):
-    return summary_property(['COH', 'SCCOH'], key2)
+    valid_key1 = [
+        'COH', 'SCCOH',
+        'JCOH', 'JSPAC',
+        'SPAC', 'SCSPAC',
+        'GPAC', 'MPAC', 'CEC', 'MCEC',
+    ]
+    return summary_property(valid_key1, key2)
 
 
 class Report(object):
