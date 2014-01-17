@@ -1,9 +1,6 @@
 import decimal
-# Try to use Python3 here
-try:
-    from io import StringIO
-except ImportError:
-    from StringIO import StringIO
+# TODO: Try to use Python3 here
+from StringIO import StringIO
 
 from pyquery import PyQuery as pq
 from unicsv import UnicodeCSVReader
@@ -268,7 +265,9 @@ class Report(object):
     def receipts(self):
         if self._receipts is None:
             self._receipts = []
-            data = StringIO(u"\n".join(self.buckets.get('RCPT', [])))
+            raw_receipts = self.buckets.get('RCPT', [])
+            lines = [a.decode('ISO-8859-1').encode('utf8') for a in raw_receipts]
+            data = StringIO("\n".join(lines))
             for row in UnicodeCSVReader(data):
                 self._receipts.append(Receipt(row, self))
         return self._receipts
