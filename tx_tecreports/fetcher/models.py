@@ -389,8 +389,12 @@ class Filing(object):
         self.is_correction = 'Corrected Report' in data[1]
         self.report_type = pq(data[2]).find('b').text()
         self.report_due = utils.extract_filing_date(data[3])
-        self.report_filed = utils.extract_filing_date(data[4])
-        self.filing_method = data[5].split(':')[1].strip()
+        if len(data) < 6:
+            self.report_filed = None
+            self.filing_method = data[4].split(':')[1].strip()
+        else:
+            self.report_filed = utils.extract_filing_date(data[4])
+            self.filing_method = data[5].split(':')[1].strip()
 
     @property
     def is_downloadable(self):
