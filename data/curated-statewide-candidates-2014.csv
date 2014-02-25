@@ -1,0 +1,504 @@
+race,category,category_order,district,first,middle,last,suffix,name,slug,party,party_order,incumbent,filed,fecid,fecpacid,tecid,tecpacid,new_order,order
+Governor,gov,1,,Wendy,R.,Davis,,Wendy R. Davis,wendy-davis,D,1,,TRUE,,,00062095,00069581,1,197
+Governor,gov,1,,Reynaldo,,Madrigal,,Reynaldo Madrigal,ray-madrigal,D,1,,TRUE,,,00020301,,3,198
+Governor,gov,1,,Brandon,,Parmer,,Brandon Parmer,brandon-parmer,G,4,,TRUE,,,00069701,,4,199
+Governor,gov,1,,Cynthia,T.,Cavazos Roman,,Cynthia T. Cavazos Roman,cynthia-t-cavazos-roman,I,5,,TRUE,,,00069817,,5,200
+Governor,gov,1,,Demetra,,Jefferson-Wysinger,,Demetra Jefferson-Wysinger,demetra-jefferson-wysinger,I,5,,TRUE,,,00069827,,6,201
+Governor,gov,1,,Anthony,,Marsh,,Anthony Marsh,anthony-marsh,I,5,,TRUE,,,00069849,,7,202
+Governor,gov,1,,Donald,Luther,Richardson,,Donald Luther Richardson,donald-luther-richardson,I,5,,TRUE,,,00069850,,8,203
+Governor,gov,1,,Robert,J.,Bell,,Robert J. Bell,robert-bell,L,3,,TRUE,,,00069656,,9,204
+Governor,gov,1,,Robert,Lynn,Garrett,,Robert Lynn Garrett,robert-lynn-garrett,L,3,,TRUE,,,00069845,,10,205
+Governor,gov,1,,Kathie,,Glass,,Kathie Glass,katherine-youngblood-glass,L,3,,TRUE,,,00066314,,11,206
+Governor,gov,1,,Star,,Locke,,Star Locke,star-locke,L,3,,TRUE,,,00058626,,12,207
+Governor,gov,1,,Lee,,Wrights,,Lee Wrights,lee-wrights,L,3,,TRUE,,,00069419,,13,208
+Governor,gov,1,,Greg,,Abbott,,Greg Abbott,greg-abbott,R,2,,TRUE,,,00019652,00051153,14,209
+Governor,gov,1,,Lisa,,Fritsch,,Lisa Fritsch,lisa-fritsch,R,2,,TRUE,,,00069550,,16,210
+Governor,gov,1,,SECEDE,,Kilgore,,SECEDE Kilgore,larry-kilgore,R,2,,TRUE,,,00054818,,17,211
+Governor,gov,1,,Miriam,,Martinez,,Miriam Martinez,miriam-martinez,R,2,,TRUE,,,00067950,,18,212
+Lieutenant Governor,lt-gov,2,,Leticia,,Van de Putte,,Leticia Van de Putte,leticia-van-de-putte,D,1,,TRUE,,,00020909,00069858,19,213
+Lieutenant Governor,lt-gov,2,,Chandrakantha,,Courtney,,Chandrakantha Courtney,chandrakantha-courtney,G,4,,TRUE,,,00069860,,21,214
+Lieutenant Governor,lt-gov,2,,Maria,Luisa,Alvarado,,Maria Luisa Alvarado,maria-luisa-alvarado,I,5,,TRUE,,,00057429,,22,215
+Lieutenant Governor,lt-gov,2,,Brandon,,De Hoyos,,Brandon De Hoyos,brandon-de-hoyos,L,3,,TRUE,,,00069546,,23,216
+Lieutenant Governor,lt-gov,2,,David,,Dewhurst,,David Dewhurst,david-dewhurst,R,2,TRUE,TRUE,,,00036668,00036671,24,217
+Lieutenant Governor,lt-gov,2,,Dan,,Patrick,,Dan Patrick,dan-patrick,R,2,,TRUE,,,00057897,00064090,26,218
+Lieutenant Governor,lt-gov,2,,Jerry,,Patterson,,Jerry Patterson,jerry-patterson,R,2,,TRUE,,,00020841,,28,219
+Lieutenant Governor,lt-gov,2,,Todd,,Staples,,Todd Staples,todd-staples,R,2,,TRUE,,,00030004,00057503,29,220
+Attorney General,atty-general,3,,Sam,,Houston,,Sam Houston,sam-houston,D,1,,TRUE,,,00062474,,31,221
+Attorney General,atty-general,3,,Jamar,,Osborne,,Jamar Osborne,jamar-osborne,G,4,,TRUE,,,00069861,,32,222
+Attorney General,atty-general,3,,Jamie,,Balagia,,Jamie Balagia,jamie-balagia,L,3,,TRUE,,,00069873,,33,223
+Attorney General,atty-general,3,,Thomas,,Glass,,Thomas Glass,tom-glass,L,3,,TRUE,,,00068491,,34,224
+Attorney General,atty-general,3,,Dan,,Branch,,Dan Branch,dan-branch,R,2,,TRUE,,,00031204,00062488,35,225
+Attorney General,atty-general,3,,Ken,,Paxton,,Ken Paxton,ken-paxton,R,2,,TRUE,,,00051407,,37,226
+Attorney General,atty-general,3,,Barry,,Smitherman,,Barry Smitherman,barry-smitherman,R,2,,TRUE,,,00054081,00067958,38,227
+Comptroller,comptroller,4,,Mike,,Collier,,Mike Collier,mike-collier,D,1,,TRUE,,,00069397,,40,228
+Comptroller,comptroller,4,,Deb,,Shafto,,Deb Shafto,deb-shafto,G,4,,TRUE,,,00066498,,41,229
+Comptroller,comptroller,4,,Ben,,Sanders,,Ben Sanders,ben-sanders,L,3,,TRUE,,,00069877,,42,230
+Comptroller,comptroller,4,,Glenn,,Hegar,,Glenn Hegar,glenn-hegar,R,2,,TRUE,,,00051286,,43,231
+Comptroller,comptroller,4,,Harvey,,Hilderbran,,Harvey Hilderbran,harvey-hilderbran,R,2,,TRUE,,,00020285,00067537,44,232
+Comptroller,comptroller,4,,Debra,,Medina,,Debra Medina,debra-medina,R,2,,TRUE,,,00065376,,46,233
+Comptroller,comptroller,4,,Raul,,Torres,,Raul Torres,raul-torres,R,2,,TRUE,,,00061992,,47,234
+Land Commissioner,land-commissioner,5,,John,,Cook,,John Cook,john-cook,D,1,,TRUE,,,00037443,,48,235
+Land Commissioner,land-commissioner,5,,Ulises,,Cabrera,,Ulises Cabrera,ulises-cabrera,G,4,,TRUE,,,00069862,,49,236
+Land Commissioner,land-commissioner,5,,Steven,L.,Childs,,Steven L. Childs,steven-childs,L,3,,TRUE,,,00069875,,50,237
+Land Commissioner,land-commissioner,5,,Justin,,Knight,,Justin Knight,justin-knight,L,3,,TRUE,,,00069876,,51,238
+Land Commissioner,land-commissioner,5,,George,P.,Bush,,George P. Bush,george-p-bush,R,2,,TRUE,,,00068738,,52,239
+Land Commissioner,land-commissioner,5,,David,,Watts,,David Watts,david-watts,R,2,,TRUE,,,00069332,,53,240
+Agriculture Commissioner,ag-commissioner,6,,Hugh,Asa,Fitzsimons,III,Hugh Asa Fitzsimons III,hugh-asa-fitzsimons-iii,D,1,,TRUE,,,00069770,,54,241
+Agriculture Commissioner,ag-commissioner,6,,Richard,,Friedman,,Richard Friedman,richard-kinky-friedman,D,1,,TRUE,,,00056764,00069395,55,242
+Agriculture Commissioner,ag-commissioner,6,,Jim,,Hogan,,Jim Hogan,jim-hogan,D,1,,TRUE,,,00069729,,57,243
+Agriculture Commissioner,ag-commissioner,6,,Kenneth,,Kendrick,,Kenneth Kendrick,kenneth-kendrick,G,4,,TRUE,,,00069863,,58,244
+Agriculture Commissioner,ag-commissioner,6,,Rick,,Donaldson,,Rick Donaldson,rick-donaldson,L,3,,TRUE,,,00020045,,59,245
+Agriculture Commissioner,ag-commissioner,6,,David,,Palmquist,,David Palmquist,rocky-palmquist,L,3,,TRUE,,,00069874,,60,246
+Agriculture Commissioner,ag-commissioner,6,,J.,Allen,Carnes,,J. Allen Carnes,j-allen-carnes,R,2,,TRUE,,,00069296,00069297,61,247
+Agriculture Commissioner,ag-commissioner,6,,Joe,,Cotten,,Joe Cotten,joe-cotten,R,2,,TRUE,,,00068368,,63,248
+Agriculture Commissioner,ag-commissioner,6,,Tommy,,Merritt,,Tommy Merritt,tommy-merritt,R,2,,TRUE,,,00023181,,64,249
+Agriculture Commissioner,ag-commissioner,6,,Sid,,Miller,,Sid Miller,sid-miller,R,2,,TRUE,,,00042143,,65,250
+Agriculture Commissioner,ag-commissioner,6,,Eric,,Opiela,,Eric Opiela,eric-opiela,R,2,,TRUE,,,00051711,,66,251
+Railroad Commissioner,rr-commissioner,7,2,Steve,,Brown,,Steve Brown,steve-brown,D,1,,TRUE,,,00057996,,67,252
+Railroad Commissioner,rr-commissioner,7,2,Dale,,Henry,,Dale Henry,dale-henry,D,1,,TRUE,,,00054417,,68,253
+Railroad Commissioner,rr-commissioner,7,2,Martina,,Salinas,,Martina Salinas,martina-salinas,G,4,,TRUE,,,00069864,,69,254
+Railroad Commissioner,rr-commissioner,7,2,Jason,Marshall,Kute,,Jason Marshall Kute,jason-marshall-kute,L,3,,TRUE,,,00069880,,70,255
+Railroad Commissioner,rr-commissioner,7,2,Mark,A.,Miller,,Mark A. Miller,mark-miller,L,3,,TRUE,,,00069542,,71,256
+Railroad Commissioner,rr-commissioner,7,2,Becky,,Berger,,Becky Berger,becky-berger,R,2,,TRUE,,,00067906,00069341,72,257
+Railroad Commissioner,rr-commissioner,7,2,Malachi,,Boyuls,,Malachi Boyuls,malachi-boyuls,R,2,,TRUE,,,00066055,00069306,74,258
+Railroad Commissioner,rr-commissioner,7,2,Wayne,,Christian,,Wayne Christian,wayne-christian,R,2,,TRUE,,,00032395,,76,259
+Railroad Commissioner,rr-commissioner,7,2,Ryan,,Sitton,,Ryan Sitton,ryan-sitton,R,2,,TRUE,,,00067797,,77,260
+Supreme Court of Texas,chief-justice,8,1,William,,Moody,,William Moody,bill-moody,D,1,,TRUE,,,00020501,,78,261
+Supreme Court of Texas,chief-justice,8,1,Tom,,Oxford,,Tom Oxford,tom-oxford,L,3,,TRUE,,,00055017,,79,262
+Supreme Court of Texas,chief-justice,8,1,Nathan,,Hecht,,Nathan Hecht,nathan-hecht,R,2,TRUE,TRUE,,,00020155,,80,263
+Supreme Court of Texas,chief-justice,8,1,Robert,,Talton,,Robert Talton,robert-talton,R,2,,TRUE,,,00020836,,81,264
+Supreme Court of Texas,justice,9,6,Lawrence,Edward,Meyers,,Lawrence Edward Meyers,lawrence-meyers,D,1,,TRUE,,,00020530,,82,265
+Supreme Court of Texas,justice,9,6,Mark,,Ash,,Mark Ash,mark-ash,L,3,,TRUE,,,00068347,,83,266
+Supreme Court of Texas,justice,9,6,Jeff,,Brown,,Jeff Brown,jeff-brown,R,2,TRUE,TRUE,,,00051706,,84,267
+Supreme Court of Texas,justice,9,6,Joe,,Pool,,Joe Pool,joe-pool-jr,R,2,,TRUE,,,00068006,,85,268
+Supreme Court of Texas,justice,9,7,Gina,,Benavides,,Gina Benavides,gina-benavides,D,1,,TRUE,,,00043618,,86,269
+Supreme Court of Texas,justice,9,7,Charles,E.,Waterbury,,Charles E. Waterbury,charles-e-waterbury,G,4,,TRUE,,,00059044,,87,270
+Supreme Court of Texas,justice,9,7,Don,,Fulton,,Don Fulton,don-fulton,L,3,,TRUE,,,00069879,,88,271
+Supreme Court of Texas,justice,9,7,Jeff,,Boyd,,Jeff Boyd,jeffrey-boyd,R,2,TRUE,TRUE,,,00068755,,89,272
+Supreme Court of Texas,justice,9,8,Jim,,Chisolm,,Jim Chisolm,jim-chisolm,G,4,,TRUE,,,00069865,,90,273
+Supreme Court of Texas,justice,9,8,Roberto,,Koelsch,,Roberto Koelsch,rs-roberto-koelsch,L,3,,TRUE,,,00068346,,91,274
+Supreme Court of Texas,justice,9,8,Phil,,Johnson,,Phil Johnson,phil-johnson,R,2,TRUE,TRUE,,,00036636,,92,275
+Supreme Court of Texas,justice,9,8,Sharon,,McCally,,Sharon McCally,sharon-mccally,R,2,,TRUE,,,00054943,,93,276
+Texas Court of Criminal Appeals,judge,10,3,John,,Granberg,,John Granberg,john-granberg,D,1,,TRUE,,,00069694,,94,277
+Texas Court of Criminal Appeals,judge,10,3,Mark,,Bennett,,Mark Bennett,mark-w-bennett,L,3,,TRUE,,,00068344,,95,278
+Texas Court of Criminal Appeals,judge,10,3,Bert,,Richardson,,Bert Richardson,bert-richardson,R,2,,TRUE,,,00041161,,96,279
+Texas Court of Criminal Appeals,judge,10,3,Barbara,,Walther,,Barbara Walther,barbara-walther,R,2,,TRUE,,,00020908,,97,280
+Texas Court of Criminal Appeals,judge,10,4,Judith,,Sanders-Castro,,Judith Sanders-Castro,judith-sanders-castro,G,4,,TRUE,,,00069866,,98,281
+Texas Court of Criminal Appeals,judge,10,4,Quanah,,Parker,,Quanah Parker,quanah-parker,L,3,,TRUE,,,00053067,,99,282
+Texas Court of Criminal Appeals,judge,10,4,Richard,Dean,Davis,,Richard Dean Davis,richard-dean-davis,R,2,,TRUE,,,00067253,,100,283
+Texas Court of Criminal Appeals,judge,10,4,Jani,Jo,Wood,,Jani Jo Wood,jani-jo-wood,R,2,,TRUE,,,00069191,,101,284
+Texas Court of Criminal Appeals,judge,10,4,Kevin,Patrick,Yeary,,Kevin Patrick Yeary,kevin-patrick-yeary,R,2,,TRUE,,,00068992,,102,285
+Texas Court of Criminal Appeals,judge,10,9,George,Joseph,Altgelt,,George Joseph Altgelt,george-joseph-altgelt,G,4,,TRUE,,,00069867,,103,286
+Texas Court of Criminal Appeals,judge,10,9,William,Bryan,Strange,III,William Bryan Strange III,william-bryan-strange-iii,L,3,,TRUE,,,00063082,,104,287
+Texas Court of Criminal Appeals,judge,10,9,W.C.,,Kirkendall,,W.C. Kirkendall,bud-kirkendall,R,2,,TRUE,,,00020348,,105,288
+Texas Court of Criminal Appeals,judge,10,9,David,,Newell,,David Newell,david-newell,R,2,,TRUE,,,00069339,,106,289
+State Board of Education,sboe,11,2,Ruben,,Cortez,Jr.,Ruben Cortez Jr.,ruben-cortez-jr,D,1,TRUE,TRUE,,,00067837,,107,290
+State Board of Education,sboe,11,2,Edward,,DeClements,,Edward DeClements,edward-declements,L,3,,TRUE,,,00069881,,108,291
+State Board of Education,sboe,11,3,Marisa,B.,Perez,,Marisa B. Perez,marisa-perez,D,1,TRUE,TRUE,,,00068287,,109,292
+State Board of Education,sboe,11,3,Steve,,Hernandez,,Steve Hernandez,steve-hernandez,L,3,,TRUE,,,00069883,,110,293
+State Board of Education,sboe,11,3,Josh,,Morales,,Josh Morales,josh-morales,L,3,,TRUE,,,00069882,,111,294
+State Board of Education,sboe,11,3,Dave,,Mundy,,Dave Mundy,dave-mundy,R,2,,TRUE,,,00069472,,112,295
+State Board of Education,sboe,11,4,Lawrence,A.,Allen,Jr.,Lawrence A. Allen Jr.,lawrence-a-allen-jr,D,1,TRUE,TRUE,,,00056010,,113,296
+State Board of Education,sboe,11,4,Dorothy,,Olmos,,Dorothy Olmos,dorothy-olmos,R,2,TRUE,TRUE,,,00041785,,114,297
+State Board of Education,sboe,11,7,Kathy,,King,,Kathy King,kathy-j-king,D,1,,TRUE,,,00069765,,115,298
+State Board of Education,sboe,11,7,Megan,,DaGata,,Megan DaGata,megan-degata,L,3,,TRUE,,,00069884,,116,299
+State Board of Education,sboe,11,7,Rita,,Ashley,,Rita Ashley,rita-ashley,R,2,,TRUE,,,00067808,,117,300
+State Board of Education,sboe,11,7,David,,Bradley,,David Bradley,david-bradley,R,2,TRUE,TRUE,,,00032542,,118,301
+State Board of Education,sboe,11,11,Nancy,,Bean,,Nancy Bean,nancy-bean,D,1,,TRUE,,,00069734,,119,302
+State Board of Education,sboe,11,11,Craig,,Sanders,,Craig Sanders,craig-sanders,L,3,,TRUE,,,,,120,303
+State Board of Education,sboe,11,11,Patricia,,Hardy,,Patricia Hardy,patricia-pat-hardy,R,2,TRUE,TRUE,,,00051772,,121,304
+State Board of Education,sboe,11,11,Eric,,Mahroum,,Eric Mahroum,eric-mahroum,R,2,,TRUE,,,00069162,,122,305
+State Board of Education,sboe,11,11,Lady,Theresa,Thombs,,Lady Theresa Thombs,lady-thombs,R,2,,TRUE,,,00067751,,123,306
+State Board of Education,sboe,11,12,Lois,,Parrott,,Lois Parrott,lois-parrott,D,1,,TRUE,,,00067934,,124,307
+State Board of Education,sboe,11,12,Mark,,Wester,,Mark Wester,mark-wester,L,3,,TRUE,,,00069886,,125,308
+State Board of Education,sboe,11,12,Geraldine,,Miller,,Geraldine Miller,geraldine-miller,R,2,TRUE,TRUE,,,00020544,,126,309
+State Board of Education,sboe,11,13,Erika,,Beltran,,Erika Beltran,erika-beltran,D,1,,TRUE,,,00069788,,127,310
+State Board of Education,sboe,11,13,Andrea,,Hilburn,,Andrea Hilburn,andrea-hilburn,D,1,,TRUE,,,00069673,,128,311
+State Board of Education,sboe,11,13,A.,Denise,Russell,,A. Denise Russell,a-denise-russell,D,1,,TRUE,,,00069509,,129,312
+State Board of Education,sboe,11,13,Junart,,Sodoy,,Junart Sodoy,junart-sodoy,L,3,,TRUE,,,00069810,,130,313
+Texas Senate,tx-senate,12,2,Don,,Bates,,Don Bates,don-bates,L,3,,TRUE,,,00069917,,131,314
+Texas Senate,tx-senate,12,2,Bob,,Deuell,,Bob Deuell,bob-deuell,R,2,TRUE,TRUE,,,00041196,00059728,132,315
+Texas Senate,tx-senate,12,2,Bob,,Hall,,Bob Hall,bob-hall,R,2,,TRUE,,,00067980,,134,316
+Texas Senate,tx-senate,12,2,Mark,,Thompson,,Mark Thompson,mark-thompson,R,2,,TRUE,,,00061977,,135,317
+Texas Senate,tx-senate,12,3,J.,Tyler,Lindsey,,J. Tyler Lindsey,j-tyler-lindsay,L,3,,TRUE,,,,,136,318
+Texas Senate,tx-senate,12,3,Robert,,Nichols,,Robert Nichols,robert-nichols,R,2,TRUE,TRUE,,,00035962,,137,319
+Texas Senate,tx-senate,12,5,Joel,,Shapiro,,Joel Shapiro,joel-stephen-shapiro,D,1,,TRUE,,,00069664,,138,320
+Texas Senate,tx-senate,12,5,Matthew,,Whittington,,Matthew Whittington,matthew-whittington,L,3,,TRUE,,,00068144,,139,321
+Texas Senate,tx-senate,12,5,Charles,,Schwertner,,Charles Schwertner,charles-schwertner,R,2,TRUE,TRUE,,,00065996,00065997,140,322
+Texas Senate,tx-senate,12,7,Jim,,Davis,,Jim Davis,jim-davis,D,1,,TRUE,,,00069773,,142,323
+Texas Senate,tx-senate,12,7,Whitney,,Bilyeu,,Whitney Bilyeu,whitney-bilyeu,L,3,,TRUE,,,00069377,,143,324
+Texas Senate,tx-senate,12,7,Paul,,Bettencourt,,Paul Bettencourt,paul-bettencourt,R,2,,TRUE,,,00069337,00069338,144,325
+Texas Senate,tx-senate,12,7,James,,Wilson,,James Wilson,james-wilson,R,2,,TRUE,,,00067574,00067576,146,326
+Texas Senate,tx-senate,12,8,Scott,,Jameson,,Scott Jameson,scott-jameson,L,3,,TRUE,,,00066315,,148,327
+Texas Senate,tx-senate,12,8,Van,,Taylor,,Van Taylor,van-taylor,R,2,,TRUE,,,00066123,,149,328
+Texas Senate,tx-senate,12,9,Gregory,R.,Perry,,Gregory R. Perry,gregory-r-perry,D,1,,TRUE,,,00069573,,150,329
+Texas Senate,tx-senate,12,9,Nicolas,,Wallace,,Nicolas Wallace,nicolas-wallace,L,3,,TRUE,,,00069919,,151,330
+Texas Senate,tx-senate,12,9,Kelly,,Hancock,,Kelly Hancock,kelly-hancock,R,2,TRUE,TRUE,,,00057801,00067719,152,331
+Texas Senate,tx-senate,12,10,George,,Boll,,George Boll,george-boll,D,1,,TRUE,,,00069743,,154,332
+Texas Senate,tx-senate,12,10,Mike,,Martinez,,Mike Martinez,mike-martinez,D,1,,TRUE,,,00028799,,155,333
+Texas Senate,tx-senate,12,10,Libby,,Willis,,Libby Willis,libby-willis,D,1,,TRUE,,,00069678,,156,334
+Texas Senate,tx-senate,12,10,John,,Tunmire,,John Tunmire,john-tunmire,G,4,,TRUE,,,00069868,,157,335
+Texas Senate,tx-senate,12,10,Gene,,Lord,,Gene Lord,gene-lord,L,3,,TRUE,,,,,158,336
+Texas Senate,tx-senate,12,10,Gene,M.,Woodard,III,Gene M. Woodard III,gene-woodard-iii,L,3,,TRUE,,,00069921,,159,337
+Texas Senate,tx-senate,12,10,Konni,,Burton,,Konni Burton,konni-burton,R,2,,TRUE,,,00069199,,160,338
+Texas Senate,tx-senate,12,10,Tony,,Pompa,,Tony Pompa,tony-pompa,R,2,,TRUE,,,00069469,00069471,161,339
+Texas Senate,tx-senate,12,10,Jon,,Schweitzer,,Jon Schweitzer,jon-schweitzer,R,2,,TRUE,,,00069599,,163,340
+Texas Senate,tx-senate,12,10,Mark,M.,Shelton,,Mark M. Shelton,mark-shelton,R,2,,TRUE,,,00058133,,164,341
+Texas Senate,tx-senate,12,10,Mark,,Skinner,,Mark Skinner,mark-skinner,R,2,,TRUE,,,00069303,,165,342
+Texas Senate,tx-senate,12,14,Kirk,,Watson,,Kirk Watson,kirk-watson,D,1,TRUE,TRUE,,,00023391,,166,343
+Texas Senate,tx-senate,12,14,David,,Baron,,David Baron,david-baron,L,3,,TRUE,,,00069923,,167,344
+Texas Senate,tx-senate,12,14,James,Arthur,Strohm,,James Arthur Strohm,james-arthur-strohm,L,3,,TRUE,,,00069922,,168,345
+Texas Senate,tx-senate,12,15,Damian,,LaCroix,,Damian LaCroix,damian-lacroix,D,1,,TRUE,,,00067056,,169,346
+Texas Senate,tx-senate,12,15,John,,Whitmire,,John Whitmire,john-whitmire,D,1,TRUE,TRUE,,,00019581,,170,347
+Texas Senate,tx-senate,12,15,Gilberto,,Velasquez,Jr.,Gilberto Velasquez Jr.,gilberto-velasquez-jr,L,3,,TRUE,,,00069924,,171,348
+Texas Senate,tx-senate,12,15,Ron,,Hale,,Ron Hale,ron-hale,R,2,,TRUE,,,00069828,,172,349
+Texas Senate,tx-senate,12,16,Mike,,Dooling,,Mike Dooling,mike-dooling,L,3,,TRUE,,,00069926,,173,350
+Texas Senate,tx-senate,12,16,John,,Carona,,John Carona,john-carona,R,2,TRUE,TRUE,,,00019837,,174,351
+Texas Senate,tx-senate,12,16,Don,,Huffines,,Don Huffines,donald-huffines,R,2,,TRUE,,,00069651,,175,352
+Texas Senate,tx-senate,12,17,Rita,,Lucido,,Rita Lucido,rita-lucido,D,1,,TRUE,,,00069650,,176,353
+Texas Senate,tx-senate,12,17,David,,Courtney,,David Courtney,david-courtney,G,4,,TRUE,,,00068184,,177,354
+Texas Senate,tx-senate,12,17,George,,Hardy,,George Hardy,george-hardy,L,3,,TRUE,,,00069927,,178,355
+Texas Senate,tx-senate,12,17,Phil,,Kurtz,,Phil Kurtz,phil-kurtz,L,3,,TRUE,,,00058870,,179,356
+Texas Senate,tx-senate,12,17,Derek,A.,Anthony,,Derek A. Anthony,derek-anthony,R,2,,TRUE,,,00069790,,180,357
+Texas Senate,tx-senate,12,17,Joan,,Huffman,,Joan Huffman,joan-huffman,R,2,TRUE,TRUE,,,00037510,00065047,181,358
+Texas Senate,tx-senate,12,23,Royce,,West,,Royce West,royce-west,D,1,TRUE,TRUE,,,00020990,,183,359
+Texas Senate,tx-senate,12,23,Jonathan,F.,Erhardt,,Jonathan F. Erhardt,jonathan-f-erhardt,L,3,,TRUE,,,00069851,,184,360
+Texas Senate,tx-senate,12,23,John,,Lawson,,John Lawson,bishop-john-lawson,R,2,,TRUE,,,00068310,,185,361
+Texas Senate,tx-senate,12,25,Daniel,,Boone,,Daniel Boone,daniel-boone,D,1,,TRUE,,,00060066,,186,362
+Texas Senate,tx-senate,12,25,Brandin,P.,Lea,,Brandin P. Lea,brandin-lea,L,3,,TRUE,,,00069928,,187,363
+Texas Senate,tx-senate,12,25,Donna,,Campbell,,Donna Campbell,donna-campbell,R,2,TRUE,TRUE,,,00067809,00068678,188,364
+Texas Senate,tx-senate,12,25,Elisa,,Chan,,Elisa Chan,elisa-chan,R,2,,TRUE,,,00069563,,190,365
+Texas Senate,tx-senate,12,25,Mike,,Novak,,Mike Novak,mike-novak,R,2,,TRUE,,,00068100,,191,366
+Texas Senate,tx-senate,12,30,Cory,,Lane,,Cory Lane,cory-lane,L,3,,TRUE,,,00069929,,192,367
+Texas Senate,tx-senate,12,30,Craig,,Estes,,Craig Estes,craig-estes,R,2,TRUE,TRUE,,,00033299,,193,368
+Texas Senate,tx-senate,12,31,Steven,,Gibson,,Steven Gibson,steven-gibson,L,3,,TRUE,,,00069930,,194,369
+Texas Senate,tx-senate,12,31,Mike,,Canon,,Mike Canon,mike-canon,R,2,,TRUE,,,00069755,,195,370
+Texas Senate,tx-senate,12,31,Kel,,Seliger,,Kel Seliger,kel-seliger,R,2,TRUE,TRUE,,,00052862,,196,371
+Texas House,tx-house,13,1,George,,Lavender,,George Lavender,george-lavender,R,2,TRUE,TRUE,,,00026525,,197,372
+Texas House,tx-house,13,1,Gary,,VanDeaver,,Gary VanDeaver,gary-vandeaver,R,2,,TRUE,,,00069367,,198,373
+Texas House,tx-house,13,2,Dan,,Flynn,,Dan Flynn,dan-flynn,R,2,TRUE,TRUE,,,00032881,,199,374
+Texas House,tx-house,13,3,Larry,,Parr,,Larry Parr,larry-parr,L,3,,TRUE,,,,,200,375
+Texas House,tx-house,13,3,Cecil,,Bell,Jr.,Cecil Bell Jr.,cecil-bell-jr,R,2,TRUE,TRUE,,,00067547,00067555,201,376
+Texas House,tx-house,13,4,Frederick,,Stralow,,Frederick Stralow,frederick-rick-stralow,L,3,,TRUE,,,00069787,,203,377
+Texas House,tx-house,13,4,Lance,,Gooden,,Lance Gooden,lance-gooden,R,2,TRUE,TRUE,,,00065836,,204,378
+Texas House,tx-house,13,4,Stuart,,Spitzer,,Stuart Spitzer,stuart-spitzer,R,2,,TRUE,,,00067718,,205,379
+Texas House,tx-house,13,5,Ron,,Walenta,,Ron Walenta,ron-walenta,L,3,,TRUE,,,00041771,,206,380
+Texas House,tx-house,13,5,Bryan,,Hughes,,Bryan Hughes,bryan-hughes,R,2,TRUE,TRUE,,,00051630,,207,381
+Texas House,tx-house,13,6,Joel,,Gardner,,Joel Gardner,joel-gardner,L,3,,TRUE,,,00069888,,208,382
+Texas House,tx-house,13,6,Skip,,Ogle,,Skip Ogle,skip-ogle,R,2,,TRUE,,,00069459,,209,383
+Texas House,tx-house,13,6,Matt,,Schaefer,,Matt Schaefer,matt-schaefer,R,2,TRUE,TRUE,,,00067583,,210,384
+Texas House,tx-house,13,7,David,,Simpson,,David Simpson,david-simpson,R,2,TRUE,TRUE,,,00066131,,211,385
+Texas House,tx-house,13,8,John,,Wilford,,John Wilford,john-wilford,L,3,,TRUE,,,00069617,,212,386
+Texas House,tx-house,13,8,Byron,,Cook,,Byron Cook,byron-cook,R,2,TRUE,TRUE,,,00051766,,213,387
+Texas House,tx-house,13,8,Charles,E.,Morgan,,Charles E. Morgan,charles-e-morgan,R,2,,TRUE,,,00066271,,214,388
+Texas House,tx-house,13,8,Bobby,,Vickery,,Bobby Vickery,bobby-vickery,R,2,,TRUE,,,00062563,,215,389
+Texas House,tx-house,13,9,Chris,,Paddie,,Chris Paddie,chris-paddie,R,2,TRUE,TRUE,,,00067675,00067691,216,390
+Texas House,tx-house,13,10,Duke,,Burge,,Duke Burge,qd-duke-burge,R,2,,TRUE,,,00057700,,218,391
+Texas House,tx-house,13,10,Jake,,Ellzey,,Jake Ellzey,jake-ellzey,R,2,,TRUE,,,00068522,,219,392
+Texas House,tx-house,13,10,T.J.,,Fabby,,T.J. Fabby,tj-fabby,R,2,,TRUE,,,00067088,,220,393
+Texas House,tx-house,13,10,John,,Wray,,John Wray,john-wray,R,2,,TRUE,,,00069503,,221,394
+Texas House,tx-house,13,11,Travis,,Clardy,,Travis Clardy,travis-clardy,R,2,TRUE,TRUE,,,00067818,,222,395
+Texas House,tx-house,13,11,Tony,,Sevilla,,Tony Sevilla,tony-sevilla,R,2,,TRUE,,,00066527,,223,396
+Texas House,tx-house,13,12,Timothy,,Delasandro,,Timothy Delasandro,timothy-delasandro,R,2,,TRUE,,,00067994,,224,397
+Texas House,tx-house,13,12,Kyle,,Kacal,,Kyle Kacal,kyle-kacal,R,2,TRUE,TRUE,,,00067801,,225,398
+Texas House,tx-house,13,13,Lois,W.,Kolkhorst,,Lois W. Kolkhorst,lois-kolkhorst,R,2,TRUE,TRUE,,,00041354,,226,399
+Texas House,tx-house,13,14,Andrew,,Metscher,,Andrew Metscher,andrew-metscher,D,1,,TRUE,,,00069536,,227,400
+Texas House,tx-house,13,14,Bruce,L.,Pugh,,Bruce L. Pugh,bruce-pugh,L,3,,TRUE,,,00069825,,228,401
+Texas House,tx-house,13,14,John,,Raney,,John Raney,john-raney,R,2,TRUE,TRUE,,,00067602,,229,402
+Texas House,tx-house,13,15,Mark,,Keough,,Mark Keough,mark-keough,R,2,,TRUE,,,00069715,,230,403
+Texas House,tx-house,13,15,Bruce,,Tough,,Bruce Tough,bruce-tough,R,2,,TRUE,,,00069684,,231,404
+Texas House,tx-house,13,16,Michael,,Hayles,Sr.,Michael Hayles Sr.,michael-hayles-sr,D,1,,TRUE,,,00069711,,232,405
+Texas House,tx-house,13,16,Bob,,Townsend,,Bob Townsend,bob-townsend,L,3,,TRUE,,,00052090,,233,406
+Texas House,tx-house,13,16,Duane,,Ham,,Duane Ham,duane-ham,R,2,,TRUE,,,00069462,,234,407
+Texas House,tx-house,13,16,Gary,A.,Louie,,Gary A. Louie,gary-louie,R,2,,TRUE,,,00069666,,235,408
+Texas House,tx-house,13,16,Will,,Metcalf,,Will Metcalf,will-metcalf,R,2,,TRUE,,,00069477,,236,409
+Texas House,tx-house,13,16,Jason,,Millsaps,,Jason Millsaps,jason-millsaps,R,2,,TRUE,,,00069480,,237,410
+Texas House,tx-house,13,16,Ted,,Seago,,Ted Seago,ted-seago,R,2,,TRUE,,,00069457,,238,411
+Texas House,tx-house,13,16,Steve,,Simonsen,,Steve Simonsen,steve-simonsen,R,2,,TRUE,,,00054827,,239,412
+Texas House,tx-house,13,17,Carolyn,,Banks,,Carolyn Banks,carolyn-banks,D,1,,TRUE,,,00069716,,240,413
+Texas House,tx-house,13,17,Tim,,Kleinschmidt,,Tim Kleinschmidt,tim-kleinschmidt,R,2,TRUE,TRUE,,,00041994,,241,414
+Texas House,tx-house,13,18,Terry,,Holcomb,,Terry Holcomb,terry-holcomb,R,2,,TRUE,,,00069618,,242,415
+Texas House,tx-house,13,18,John,,Otto,,John Otto,john-otto,R,2,TRUE,TRUE,,,00054588,,243,416
+Texas House,tx-house,13,19,James,E.,White,,James E. White,james-white,R,2,TRUE,TRUE,,,00056322,,244,417
+Texas House,tx-house,13,20,Stephen,M.,Wyman,,Stephen M. Wyman,stephen-wyman,D,1,,TRUE,,,00058436,,245,418
+Texas House,tx-house,13,20,Jarrod,,Weaver,,Jarrod Weaver,jarrod-weaver,L,3,,TRUE,,,00065890,,246,419
+Texas House,tx-house,13,20,Marsha,,Farney,,Marsha Farney,marsha-farney,R,2,TRUE,TRUE,,,00066195,,247,420
+Texas House,tx-house,13,21,Gavin,,Bruney,,Gavin Bruney,gavin-bruney,D,1,,TRUE,,,00069736,,248,421
+Texas House,tx-house,13,21,Judy,,Nichols,,Judy Nichols,judy-nichols,R,2,,TRUE,,,00069591,,249,422
+Texas House,tx-house,13,21,Dade,,Phelan,,Dade Phelan,dade-phelan,R,2,,TRUE,,,00062288,00069623,250,423
+Texas House,tx-house,13,22,Joe,,Deshotel,,Joe Deshotel,joe-deshotel,D,1,TRUE,TRUE,,,00039164,,252,424
+Texas House,tx-house,13,23,Susan,,Criss,,Susan Criss,susan-criss,D,1,,TRUE,,,00037252,,253,425
+Texas House,tx-house,13,23,Wayne,,Faircloth,,Wayne Faircloth,wayne-faircloth,R,2,,TRUE,,,00067849,,254,426
+Texas House,tx-house,13,23,Bob,,Senter,,Bob Senter,robert-senter,R,2,,TRUE,,,00069556,,255,427
+Texas House,tx-house,13,24,Joseph,,Whittington,,Joseph Whittington,joseph-whittington,L,3,,TRUE,,,00069889,,256,428
+Texas House,tx-house,13,24,Greg,,Bonnen,,Greg Bonnen,greg-bonnen,R,2,TRUE,TRUE,,,00067723,00067893,257,429
+Texas House,tx-house,13,25,Randall,Lee,Goodson,,Randall Lee Goodson,randall-lee-goodson,L,3,,TRUE,,,00069890,,259,430
+Texas House,tx-house,13,25,Dennis,,Bonnen,,Dennis Bonnen,dennis-bonnen,R,2,TRUE,TRUE,,,00032574,,260,431
+Texas House,tx-house,13,26,Amber,,Paaso,,Amber Paaso,amber-paaso,D,1,,TRUE,,,00069703,,261,432
+Texas House,tx-house,13,26,D. F.,,Miller,,D. F. Miller,rick-miller,R,2,TRUE,TRUE,,,00062278,,262,433
+Texas House,tx-house,13,27,Ron,,Reynolds,,Ron Reynolds,ron-reynolds,D,1,TRUE,TRUE,,,00062098,,263,434
+Texas House,tx-house,13,27,David,,Hamilton,,David Hamilton,david-hamilton,R,2,,TRUE,,,00069519,,264,435
+Texas House,tx-house,13,28,John,,Zerwas,,John Zerwas,john-zerwas,R,2,TRUE,TRUE,,,00058497,00060452,265,436
+Texas House,tx-house,13,29,Ed,,Thompson,,Ed Thompson,ed-thompson,R,2,TRUE,TRUE,,,00067775,00067776,267,437
+Texas House,tx-house,13,30,Geanie,W.,Morrison,,Geanie W. Morrison,geanie-morrison,R,2,TRUE,TRUE,,,00032386,,269,438
+Texas House,tx-house,13,31,Ryan,,Guillen,,Ryan Guillen,ryan-guillen,D,1,TRUE,TRUE,,,00051797,,270,439
+Texas House,tx-house,13,32,Joshua,M.,Byerly,,Joshua M. Byerly,joshua-m-byerly,G,4,,TRUE,,,00069869,,271,440
+Texas House,tx-house,13,32,Todd,,Hunter,,Todd Hunter,todd-hunter,R,2,TRUE,TRUE,,,00020493,,272,441
+Texas House,tx-house,13,33,Scott,,Turner,,Scott Turner,scott-turner,R,2,TRUE,TRUE,,,00067573,,273,442
+Texas House,tx-house,13,34,Abel,,Herrero,,Abel Herrero,abel-herrero,D,1,TRUE,TRUE,,,00054318,,274,443
+Texas House,tx-house,13,35,Oscar,,Longoria,,Oscar Longoria,oscar-longoria,D,1,TRUE,TRUE,,,00068271,,275,444
+Texas House,tx-house,13,36,Sergio,,Munoz,Jr.,Sergio Munoz Jr.,sergio-munoz-jr,D,1,TRUE,TRUE,,,00065967,,276,445
+Texas House,tx-house,13,36,Mari,,Regalado,,Mari Regalado,mari-regalado,D,1,,TRUE,,,00069483,,277,446
+Texas House,tx-house,13,37,René,O.,Oliveira,,René O. Oliveira,rene-oliveira,D,1,TRUE,TRUE,,,00020747,,278,447
+Texas House,tx-house,13,38,Eddie,,Lucio,III,Eddie Lucio III,eddie-lucio-iii,D,1,TRUE,TRUE,,,00057767,,279,448
+Texas House,tx-house,13,39,Armando,,Martinez,,Armando Martinez,armando-martinez,D,1,TRUE,TRUE,,,00054543,,280,449
+Texas House,tx-house,13,40,Terry,,Canales,,Terry Canales,terry-canales,D,1,TRUE,TRUE,,,00065230,,281,450
+Texas House,tx-house,13,41,Bobby,,Guerra,,Bobby Guerra,bobby-guerra,D,1,TRUE,TRUE,,,00035579,,282,451
+Texas House,tx-house,13,41,Elijah,Israel,Casas,,Elijah Israel Casas,elijah-israel-casas,R,2,,TRUE,,,00069754,,283,452
+Texas House,tx-house,13,42,Richard,Peňa,Raymond,,Richard Peňa Raymond,richard-pena-raymond,D,1,TRUE,TRUE,,,00021186,00067623,284,453
+Texas House,tx-house,13,42,Nicolas,,Serna,III,Nicolas Serna III,nicolas-serna-iii,G,4,,TRUE,,,00069855,,286,454
+Texas House,tx-house,13,43,Kim,,Gonzalez,,Kim Gonzalez,kim-gonzalez,D,1,,TRUE,,,00069580,,287,455
+Texas House,tx-house,13,43,J.M.,,Lozano,,J.M. Lozano,jose-manuel-lozano,R,2,TRUE,TRUE,,,00065802,,288,456
+Texas House,tx-house,13,44,Robert,M.,Bohmfalk,,Robert M. Bohmfalk,robert-m-bohmfalk,D,1,,TRUE,,,00066306,,289,457
+Texas House,tx-house,13,44,John,,Kuempel,,John Kuempel,john-kuempel,R,2,TRUE,TRUE,,,00066988,,290,458
+Texas House,tx-house,13,45,Jim,,Duke,,Jim Duke,jim-duke,L,3,,TRUE,,,00068244,,291,459
+Texas House,tx-house,13,45,Jason,A.,Isaac,,Jason A. Isaac,jason-a-isaac,R,2,TRUE,TRUE,,,00066236,00066237,292,460
+Texas House,tx-house,13,46,Dawnna,,Dukes,,Dawnna Dukes,dawnna-dukes,D,1,TRUE,TRUE,,,00025843,00025855,294,461
+Texas House,tx-house,13,46,Kevin,,Ludlow,,Kevin Ludlow,kevin-ludlow,L,3,,TRUE,,,00069891,,296,462
+Texas House,tx-house,13,47,Scott,G.,McKinlay,,Scott G. McKinlay,scott-mckinlay,L,3,,TRUE,,,00069892,,297,463
+Texas House,tx-house,13,47,Paul,D.,Workman,,Paul D. Workman,paul-workman,R,2,TRUE,TRUE,,,00066075,00066076,298,464
+Texas House,tx-house,13,48,Donna,,Howard,,Donna Howard,donna-howard,D,1,TRUE,TRUE,,,00042130,,300,465
+Texas House,tx-house,13,48,Ben,,Easton,,Ben Easton,ben-easton,L,3,,TRUE,,,00037284,,301,466
+Texas House,tx-house,13,49,Elliott,,Naishtat,,Elliott Naishtat,elliott-naishtat,D,1,TRUE,TRUE,,,00020642,,302,467
+Texas House,tx-house,13,49,Daniel,,Krawisz,,Daniel Krawisz,daniel-krawisz,L,3,,TRUE,,,00069893,,303,468
+Texas House,tx-house,13,50,Celia,,Israel,,Celia Israel,celia-israel,D,1,,TRUE,,,00050675,,304,469
+Texas House,tx-house,13,50,David,,Dreesen,,David Dreesen,david-dreesen,L,3,,TRUE,,,00069894,,305,470
+Texas House,tx-house,13,50,Mike,,VanDeWalle,,Mike VanDeWalle,mike-vandewalle,R,2,,TRUE,,,00069451,,306,471
+Texas House,tx-house,13,51,Eddie,,Rodriguez,,Eddie Rodriguez,eddie-rodriguez,D,1,TRUE,TRUE,,,00041097,,307,472
+Texas House,tx-house,13,51,Arthur,,DiBlanca,,Arthur DiBlanca,arthur-dibianca,L,3,,TRUE,,,00052055,,308,473
+Texas House,tx-house,13,52,Chris,,Osborn,,Chris Osborn,chris-osborn,D,1,,TRUE,,,00069753,,309,474
+Texas House,tx-house,13,52,Irene,,Johnson,,Irene Johnson,irene-johnson,L,3,,TRUE,,,00069895,,310,475
+Texas House,tx-house,13,52,Lillian,Martinez,Simmons,,Lillian Martinez Simmons,lillian-simmons,L,3,,TRUE,,,00052070,,311,476
+Texas House,tx-house,13,52,Larry,,Gonzales,,Larry Gonzales,larry-gonzales,R,2,TRUE,TRUE,,,00065942,,312,477
+Texas House,tx-house,13,53,B.,W.,Holk,,B. W. Holk,bw-holk,L,3,,TRUE,,,00058917,,313,478
+Texas House,tx-house,13,53,Maximillian,,Martin,,Maximillian Martin,maximillian-martin,L,3,,TRUE,,,00069896,,314,479
+Texas House,tx-house,13,53,Karen,,Harris,,Karen Harris,karen-harris,R,2,,TRUE,,,00069320,,315,480
+Texas House,tx-house,13,53,Rob,,Henneke,,Rob Henneke,rob-henneke,R,2,,TRUE,,,00069370,,316,481
+Texas House,tx-house,13,53,Andrew,S.,Murr,,Andrew S. Murr,andrew-murr,R,2,,TRUE,,,00069565,,317,482
+Texas House,tx-house,13,53,Tink,,Nathan,,Tink Nathan,tink-nathan,R,2,,TRUE,,,00069779,,318,483
+Texas House,tx-house,13,53,Wayne,,Ramsay,,Wayne Ramsay,wayne-ramsay,R,2,,TRUE,,,00069820,,319,484
+Texas House,tx-house,13,54,Jimmie,Don,Aycock,,Jimmie Don Aycock,jimmie-don-aycock,R,2,TRUE,TRUE,,,00057872,00068685,320,485
+Texas House,tx-house,13,55,Ralph,,Sheffield,,Ralph Sheffield,ralph-sheffield,R,2,TRUE,TRUE,,,00062321,,322,486
+Texas House,tx-house,13,55,Molly,S.,White,,Molly S. White,molly-s-white,R,2,,TRUE,,,00069574,,323,487
+Texas House,tx-house,13,56,Clif,,Deuvall,,Clif Deuvall,clifford-deuvall,L,3,,TRUE,,,00067610,,324,488
+Texas House,tx-house,13,56,Charles,,Anderson,,Charles Anderson,charles-doc-anderson,R,2,TRUE,TRUE,,,00051449,,325,489
+Texas House,tx-house,13,57,Trent,,Ashby,,Trent Ashby,trent-ashby,R,2,TRUE,TRUE,,,00067800,,326,490
+Texas House,tx-house,13,58,Greg,A.,Kauffman,,Greg A. Kauffman,greg-allen-kauffman,D,1,,TRUE,,,00051765,,327,491
+Texas House,tx-house,13,58,Jesse,,Pistokache,Jr.,Jesse Pistokache Jr.,jesse-pistokache-jr,L,3,,TRUE,,,00069567,,328,492
+Texas House,tx-house,13,58,DeWayne,,Burns,,DeWayne Burns,dewayne-burns,R,2,,TRUE,,,00069548,,329,493
+Texas House,tx-house,13,58,Philip,,Eby,,Philip Eby,philip-eby,R,2,,TRUE,,,00068967,,330,494
+Texas House,tx-house,13,58,Lyndon,,Laird,,Lyndon Laird,lyndon-laird,R,2,,TRUE,,,00068342,,331,495
+Texas House,tx-house,13,58,Henry,W.,Teich,,Henry W. Teich,henry-teich,R,2,,TRUE,,,00069551,,332,496
+Texas House,tx-house,13,59,Danny,,Pelton,,Danny Pelton,danny-pelton,R,2,,TRUE,,,00067559,,333,497
+Texas House,tx-house,13,59,Howard,,Ray,,Howard Ray,howard-ray,R,2,,TRUE,,,00069318,00069319,334,498
+Texas House,tx-house,13,59,J.D.,,Sheffield,,J.D. Sheffield,jd-sheffield,R,2,TRUE,TRUE,,,00066222,,336,499
+Texas House,tx-house,13,60,Cullen,,Crisp,,Cullen Crisp,cullen-crisp,R,2,,TRUE,,,00068211,,337,500
+Texas House,tx-house,13,60,James,L.,Keffer,,James L. Keffer,jim-keffer,R,2,TRUE,TRUE,,,00032876,,338,501
+Texas House,tx-house,13,61,Matthew,,Britt,,Matthew Britt,matthew-britt,D,1,,TRUE,,,00068398,,339,502
+Texas House,tx-house,13,61,Phil,,King,,Phil King,phil-king,R,2,TRUE,TRUE,,,00036483,,340,503
+Texas House,tx-house,13,62,Larry,,Phillips,,Larry Phillips,larry-phillips,R,2,TRUE,TRUE,,,00052791,,341,504
+Texas House,tx-house,13,63,Daniel,,Moran,,Daniel Moran,daniel-moran,D,1,,TRUE,,,00069615,,342,505
+Texas House,tx-house,13,63,Tan,,Parker,,Tan Parker,tan-parker,R,2,TRUE,TRUE,,,00058399,,343,506
+Texas House,tx-house,13,64,Emy,,Lyons,,Emy Lyons,emy-lyons,D,1,,TRUE,,,00069668,,344,507
+Texas House,tx-house,13,64,Braeden,,Wright,,Braeden Wright,braeden-wright,G,4,,TRUE,,,00069870,,345,508
+Texas House,tx-house,13,64,Myra,,Crownover,,Myra Crownover,myra-crownover,R,2,TRUE,TRUE,,,00037222,,346,509
+Texas House,tx-house,13,64,Read,,King,,Read King,read-king,R,2,,TRUE,,,00069521,,347,510
+Texas House,tx-house,13,65,Alex,,Mendoza,,Alex Mendoza,alex-mendoza,D,1,,TRUE,,,00068408,,348,511
+Texas House,tx-house,13,65,Ron,,Simmons,,Ron Simmons,ron-simmons,R,2,TRUE,TRUE,,,00068046,,349,512
+Texas House,tx-house,13,66,Ian,,Santorella,,Ian Santorella,ian-santorella,L,3,,TRUE,,,00069897,,350,513
+Texas House,tx-house,13,66,Glenn,,Callison,,Glenn Callison,glenn-callison,R,2,,TRUE,,,00069645,00069739,351,514
+Texas House,tx-house,13,66,Stacy,,Chen,,Stacy Chen,stacy-chen,R,2,,TRUE,,,00069543,,353,515
+Texas House,tx-house,13,66,Matt,,Shaheen,,Matt Shaheen,matt-shaheen,R,2,,TRUE,,,00069726,,354,516
+Texas House,tx-house,13,67,Patrick,,Peavy,,Patrick Peavy,patrick-peavy,L,3,,TRUE,,,00069898,,355,517
+Texas House,tx-house,13,67,Jeff,,Leach,,Jeff Leach,jeff-leach,R,2,TRUE,TRUE,,,00067738,,356,518
+Texas House,tx-house,13,68,Drew,,Springer,,Drew Springer,drew-springer,R,2,TRUE,TRUE,,,00067769,,357,519
+Texas House,tx-house,13,69,James,,Frank,,James Frank,james-frank,R,2,TRUE,TRUE,,,00067748,,358,520
+Texas House,tx-house,13,70,Scott,,Sanford,,Scott Sanford,scott-sanford,R,2,TRUE,TRUE,,,00067791,,359,521
+Texas House,tx-house,13,71,Isaac,M.,Castro,,Isaac M. Castro,isaac-m-castro,R,2,,TRUE,,,00026397,,360,522
+Texas House,tx-house,13,71,Susan,L.,King,,Susan L. King,susan-king,R,2,TRUE,TRUE,,,00058137,00065811,361,523
+Texas House,tx-house,13,72,Drew,,Darby,,Drew Darby,drew-darby,R,2,TRUE,TRUE,,,00051651,,363,524
+Texas House,tx-house,13,72,Shannon,,Thomason,,Shannon Thomason,shannon-thomason,R,2,,TRUE,,,00069718,,364,525
+Texas House,tx-house,13,73,Doug,,Miller,,Doug Miller,doug-miller,R,2,TRUE,TRUE,,,00015447,00066875,365,526
+Texas House,tx-house,13,74,Poncho,,Nevárez,,Poncho Nevárez,poncho-nevarez,D,1,TRUE,TRUE,,,00067786,,367,527
+Texas House,tx-house,13,75,Mary,,González,,Mary González,mary-gonzalez,D,1,TRUE,TRUE,,,00068004,,368,528
+Texas House,tx-house,13,75,Rey,,Sepulveda,,Rey Sepulveda,rey-sepulveda,D,1,,TRUE,,,00069758,,369,529
+Texas House,tx-house,13,76,Cesar,,Blanco,,Cesar Blanco,cesar-blanco,D,1,,TRUE,,,00069541,,370,530
+Texas House,tx-house,13,76,Norma,,Chavez,,Norma Chavez,norma-chavez,D,1,,TRUE,,,00032066,,371,531
+Texas House,tx-house,13,76,Naomi,R.,Gonzalez,,Naomi R. Gonzalez,naomi-r-gonzalez,D,1,TRUE,TRUE,,,00066051,,372,532
+Texas House,tx-house,13,76,J.,Alexandro,Lozano,,J. Alexandro Lozano,j-alexandro-lozano,L,3,,TRUE,,,00069778,,373,533
+Texas House,tx-house,13,77,Marisa,,Marquez,,Marisa Marquez,marisa-marquez,D,1,TRUE,TRUE,,,00062161,,374,534
+Texas House,tx-house,13,77,Lyda,,Ness-Garcia,,Lyda Ness-Garcia,lyda-ness-garcia,D,1,,TRUE,,,00061857,,375,535
+Texas House,tx-house,13,77,Ben,E.,Mendoza,,Ben E. Mendoza,ben-e-mendoza,I,5,,TRUE,,,00068070,,376,536
+Texas House,tx-house,13,78,Joe,,Moody,,Joe Moody,joseph-moody,D,1,TRUE,TRUE,,,00062850,,377,537
+Texas House,tx-house,13,79,Chuck,,Peartree,,Chuck Peartree,chuck-peartree,D,1,,TRUE,,,00069815,,378,538
+Texas House,tx-house,13,79,Joe,C.,Pickett,,Joe C. Pickett,joe-pickett,D,1,TRUE,TRUE,,,00026389,,379,539
+Texas House,tx-house,13,79,Steven,,Shaw,,Steven Shaw,stephen-shaw,L,3,,TRUE,,,00069900,,380,540
+Texas House,tx-house,13,80,Tracy,O.,King,,Tracy O. King,tracy-king,D,1,TRUE,TRUE,,,00021143,,381,541
+Texas House,tx-house,13,80,Marco,,Buentello,,Marco Buentello,marco-buentello,G,4,,TRUE,,,00069856,,382,542
+Texas House,tx-house,13,81,Austin,R.,Keith,,Austin R. Keith,austin-keith,R,2,,TRUE,,,00069544,,383,543
+Texas House,tx-house,13,81,Brooks,,Landgraf,,Brooks Landgraf,brooks-landgraf,R,2,,TRUE,,,00069756,,384,544
+Texas House,tx-house,13,82,Dan,,Anderson,,Dan Anderson,dan-anderson,L,3,,TRUE,,,,,385,545
+Texas House,tx-house,13,82,Tom,,Craddick,,Tom Craddick,tom-craddick,R,2,TRUE,TRUE,,,00020051,,386,546
+Texas House,tx-house,13,83,Steve,,Massengale,,Steve Massengale,steve-massengale,R,2,,TRUE,,,00069693,,387,547
+Texas House,tx-house,13,83,Charles,,Perry,,Charles Perry,charles-perry,R,2,TRUE,TRUE,,,00066066,,388,548
+Texas House,tx-house,13,84,Ed,,Tishler,,Ed Tishler,ed-tishler,D,1,,TRUE,,,00069818,,389,549
+Texas House,tx-house,13,84,John,,Frullo,,John Frullo,john-frullo,R,2,TRUE,TRUE,,,00066260,,390,550
+Texas House,tx-house,13,85,Cynthia,,Drabek,,Cynthia Drabek,cynthia-drabek,D,1,,TRUE,,,00069762,,391,551
+Texas House,tx-house,13,85,Phil,,Stephenson,,Phil Stephenson,phil-stephenson,R,2,TRUE,TRUE,,,00038508,,392,552
+Texas House,tx-house,13,86,John,,Smithee,,John Smithee,john-smithee,R,2,TRUE,TRUE,,,00020664,,393,553
+Texas House,tx-house,13,87,Abel,,Bosquez,,Abel Bosquez,abel-g-bosquez,D,1,,TRUE,,,00065893,,394,554
+Texas House,tx-house,13,87,Four,,Price,,Four Price,walter-t-four-price,R,2,TRUE,TRUE,,,00066243,,395,555
+Texas House,tx-house,13,88,Kerry,,McKennon,,Kerry McKennon,kerry-mckennon,L,3,,TRUE,,,00069683,,396,556
+Texas House,tx-house,13,88,Ken,,King,,Ken King,ken-king,R,2,TRUE,TRUE,,,00067681,,397,557
+Texas House,tx-house,13,89,Sameena,,Karmally,,Sameena Karmally,sameena-karmally,D,1,,TRUE,,,00069607,,398,558
+Texas House,tx-house,13,89,Bob,,Worthington,,Bob Worthington,bob-worthington,L,3,,TRUE,,,00052075,,399,559
+Texas House,tx-house,13,89,Jodie,,Laubenberg,,Jodie Laubenberg,jodie-laubenberg,R,2,TRUE,TRUE,,,00051273,,400,560
+Texas House,tx-house,13,90,Lon,,Burnam,,Lon Burnam,lon-burnam,D,1,TRUE,TRUE,,,00019778,,401,561
+Texas House,tx-house,13,90,Ramon,,Romero,Jr.,Ramon Romero Jr.,ramon-romero-jr,D,1,,TRUE,,,00069719,,402,562
+Texas House,tx-house,13,91,David,L.,Ragan,,David L. Ragan,david-l-ragan,D,1,,TRUE,,,00069638,,403,563
+Texas House,tx-house,13,91,Felecia,,Whatley,,Felecia Whatley,felicia-whatley,L,3,,TRUE,,,00069902,,404,564
+Texas House,tx-house,13,91,Stephanie,,Klick,,Stephanie Klick,stephanie-klick,R,2,TRUE,TRUE,,,00057431,,405,565
+Texas House,tx-house,13,92,Tina,,Penney,,Tina Penney,tina-penney,D,1,,TRUE,,,00069602,,406,566
+Texas House,tx-house,13,92,Andy,,Cargile,,Andy Cargile,andy-cargile,R,2,,TRUE,,,00069575,,407,567
+Texas House,tx-house,13,92,Jonathan,,Stickland,,Jonathan Stickland,jonathan-stickland,R,2,TRUE,TRUE,,,00067904,,408,568
+Texas House,tx-house,13,93,Jeff,,Owens,,Jeff Owens,jeff-owens,L,3,,TRUE,,,00069903,,409,569
+Texas House,tx-house,13,93,Matt,,Krause,,Matt Krause,matt-krause,R,2,TRUE,TRUE,,,00065897,,410,570
+Texas House,tx-house,13,94,Cole,,Ballweg,,Cole Ballweg,cole-ballweg,D,1,,TRUE,,,00069717,,411,571
+Texas House,tx-house,13,94,Robert,,Harris,,Robert Harris,robert-harris,L,3,,TRUE,,,00069347,,412,572
+Texas House,tx-house,13,94,Diane,,Patrick,,Diane Patrick,diane-patrick,R,2,TRUE,TRUE,,,00020837,,413,573
+Texas House,tx-house,13,94,Tony,,Tinderholt,,Tony Tinderholt,tony-tinderholt,R,2,,TRUE,,,00069489,,414,574
+Texas House,tx-house,13,95,Nicole,,Collier,,Nicole Collier,nicole-collier,D,1,TRUE,TRUE,,,00067957,,415,575
+Texas House,tx-house,13,95,Albert,G.,McDaniel,,Albert G. McDaniel,albert-g-mcdaniel,R,2,,TRUE,,,00069748,,416,576
+Texas House,tx-house,13,96,Quinn,,Eaker,,Quinn Eaker,quinn-eaker,L,3,,TRUE,,,00069905,,417,577
+Texas House,tx-house,13,96,Bill,,Zedler,,Bill Zedler,bill-zedler,R,2,TRUE,TRUE,,,00041860,00066474,418,578
+Texas House,tx-house,13,97,Rod,,Wingo,,Rod Wingo,rod-wingo,L,3,,TRUE,,,00058938,,420,579
+Texas House,tx-house,13,97,Craig,,Goldman,,Craig Goldman,craig-goldman,R,2,TRUE,TRUE,,,00062004,,421,580
+Texas House,tx-house,13,98,Giovanni,,Capriglione,,Giovanni Capriglione,giovanni-capriglione,R,2,TRUE,TRUE,,,00065973,,422,581
+Texas House,tx-house,13,99,Charlie,,Geren,,Charlie Geren,charlie-geren,R,2,TRUE,TRUE,,,00029493,,423,582
+Texas House,tx-house,13,100,Eric,,Johnson,,Eric Johnson,eric-johnson,D,1,TRUE,TRUE,,,00065751,,424,583
+Texas House,tx-house,13,100,Brian,,Chapman,,Brian Chapman,brian-chapman,L,3,,TRUE,,,00069906,,425,584
+Texas House,tx-house,13,101,Chris,,Turner,,Chris Turner,chris-turner,D,1,TRUE,TRUE,,,00062790,,426,585
+Texas House,tx-house,13,101,Carl,,Nulsen,,Carl Nulsen,carl-nulsen,L,3,,TRUE,,,00063087,,427,586
+Texas House,tx-house,13,102,George,M.,Clayton,,George M. Clayton,george-m-clayton,D,1,,TRUE,,,00065569,,428,587
+Texas House,tx-house,13,102,Adryana,,Boyne,,Adryana Boyne,adryana-boyne,R,2,,TRUE,,,00069348,,429,588
+Texas House,tx-house,13,102,Sam,,Brown,,Sam Brown,sam-brown,R,2,,TRUE,,,00069421,,430,589
+Texas House,tx-house,13,102,Stefani,,Carter,,Stefani Carter,stefani-carter,R,2,TRUE,TRUE,,,00064029,,431,590
+Texas House,tx-house,13,102,Linda,,Koop,,Linda Koop,linda-koop,R,2,,TRUE,,,00069372,,432,591
+Texas House,tx-house,13,103,Rafael,M.,Anchia,,Rafael M. Anchia,rafael-anchia,D,1,TRUE,TRUE,,,00054808,,433,592
+Texas House,tx-house,13,104,Roberto,R.,Alonzo,,Roberto R. Alonzo,roberto-alonzo,D,1,TRUE,TRUE,,,00019681,,434,593
+Texas House,tx-house,13,105,Terry,,Meza,,Terry Meza,terry-meza,D,1,,TRUE,,,00069649,,435,594
+Texas House,tx-house,13,105,Bernice,,Montgomery,,Bernice Montgomery,bernice-montgomery,D,1,,TRUE,,,00069806,,436,595
+Texas House,tx-house,13,105,Susan,,Motley,,Susan Motley,susan-motley,D,1,,TRUE,,,00069535,,437,596
+Texas House,tx-house,13,105,W.,Carl,Spiller,,W. Carl Spiller,w-carl-spiller,L,3,,TRUE,,,00069844,,438,597
+Texas House,tx-house,13,105,Rodney,,Anderson,,Rodney Anderson,rodney-anderson,R,2,,TRUE,,,00066277,00069452,439,598
+Texas House,tx-house,13,105,Linda,,Harper-Brown,,Linda Harper-Brown,linda-harperbrown,R,2,TRUE,TRUE,,,00051665,,441,599
+Texas House,tx-house,13,106,Lisa,,Osterholt,,Lisa Osterholt,lisa-osterholt,D,1,,TRUE,,,00069557,,442,600
+Texas House,tx-house,13,106,Rodney,,Caston,,Rodney Caston,rodney-caston,L,3,,TRUE,,,00068362,,443,601
+Texas House,tx-house,13,106,Pat,,Fallon,,Pat Fallon,pat-fallon,R,2,TRUE,TRUE,,,00067539,,444,602
+Texas House,tx-house,13,107,Carol,,Donovan,,Carol Donovan,carol-donovan,D,1,,TRUE,,,00069236,,445,603
+Texas House,tx-house,13,107,Kenneth,,Sheets,,Kenneth Sheets,kenneth-sheets,R,2,TRUE,TRUE,,,00066290,,446,604
+Texas House,tx-house,13,108,Leigh,,Bailey,,Leigh Bailey,leigh-bailey,D,1,,TRUE,,,00069494,,447,605
+Texas House,tx-house,13,108,Court,,Alley,,Court Alley,court-alley,R,2,,TRUE,,,00069323,,448,606
+Texas House,tx-house,13,108,Morgan,,Meyer,,Morgan Meyer,morgan-meyer,R,2,,TRUE,,,00069344,,449,607
+Texas House,tx-house,13,108,Chart,,Westcott,,Chart Westcott,chart-westcott,R,2,,TRUE,,,00069137,,450,608
+Texas House,tx-house,13,109,Helen,,Giddings,,Helen Giddings,helen-giddings,D,1,TRUE,TRUE,,,00020108,,451,609
+Texas House,tx-house,13,109,Genevieve,,Gregory,,Genevieve Gregory,genevieve-gregory,D,1,,TRUE,,,00069700,,452,610
+Texas House,tx-house,13,110,Sandra,,Crenshaw,,Sandra Crenshaw,sandra-crenshaw,D,1,,TRUE,,,00069780,,453,611
+Texas House,tx-house,13,110,Toni,,Rose,,Toni Rose,toni-rose,D,1,TRUE,TRUE,,,00067987,,454,612
+Texas House,tx-house,13,111,Yvonne,,Davis,,Yvonne Davis,yvonne-davis,D,1,TRUE,TRUE,,,00019811,,455,613
+Texas House,tx-house,13,112,Michael,,Binkley,,Michael Binkley,michael-binkley,L,3,,TRUE,,,00069907,,456,614
+Texas House,tx-house,13,112,Angie,Chen,Button,,Angie Chen Button,angie-chen-button,R,2,TRUE,TRUE,,,00062309,,457,615
+Texas House,tx-house,13,112,Jared,,Patterson,,Jared Patterson,jared-patterson,R,2,,TRUE,,,00069343,,458,616
+Texas House,tx-house,13,113,Milton,,Whitley,,Milton Whitley,milton-whitley,D,1,,TRUE,,,00069697,,459,617
+Texas House,tx-house,13,113,Cindy,,Burkett,,Cindy Burkett,cindy-burkett,R,2,TRUE,TRUE,,,00065930,,460,618
+Texas House,tx-house,13,114,Thomas,,Griffing,,Thomas Griffing,thomas-griffing,L,3,,TRUE,,,00069908,,461,619
+Texas House,tx-house,13,114,Jason,,Villalba,,Jason Villalba,jason-villalba,R,2,TRUE,TRUE,,,00067845,00067846,462,620
+Texas House,tx-house,13,115,Paul,K.,Stafford,,Paul K. Stafford,paul-stafford,D,1,,TRUE,,,00069699,,464,621
+Texas House,tx-house,13,115,Kim,,Kelley,,Kim Kelley,kim-kelley,L,3,,TRUE,,,00069909,,465,622
+Texas House,tx-house,13,115,Bennett,,Ratliff,,Bennett Ratliff,bennett-ratliff,R,2,TRUE,TRUE,,,00067616,,466,623
+Texas House,tx-house,13,115,Matt,,Rinaldi,,Matt Rinaldi,matt-rinaldi,R,2,,TRUE,,,00065931,,467,624
+Texas House,tx-house,13,116,Trey,Martinez,Fischer,,Trey Martinez Fischer,trey-martinez-fischer,D,1,TRUE,TRUE,,,00040542,,468,625
+Texas House,tx-house,13,117,Philip,,Cortez,,Philip Cortez,phillip-cortez,D,1,TRUE,TRUE,,,00067628,,469,626
+Texas House,tx-house,13,117,Rick,,Galindo,,Rick Galindo,rick-galindo,R,2,,TRUE,,,00069523,,470,627
+Texas House,tx-house,13,117,John,V.,Garza,,John V. Garza,john-v-garza,R,2,,TRUE,,,00062837,,471,628
+Texas House,tx-house,13,118,Joe,,Farias,,Joe Farias,joe-farias,D,1,TRUE,TRUE,,,00058360,,472,629
+Texas House,tx-house,13,119,Roland,,Gutierrez,,Roland Gutierrez,roland-gutierrez,D,1,TRUE,TRUE,,,00062485,,473,630
+Texas House,tx-house,13,120,Ruth,Jones,McClendon,,Ruth Jones McClendon,ruth-mcclendon,D,1,TRUE,TRUE,,,00023012,,474,631
+Texas House,tx-house,13,120,Gilberto,,Villela,,Gilberto Villela,gilberto-villela,L,3,,TRUE,,,00069910,,475,632
+Texas House,tx-house,13,121,Jeff,,Carruthers,,Jeff Carruthers,jeff-caruthers,L,3,,TRUE,,,00052356,,476,633
+Texas House,tx-house,13,121,Matt,,Beebe,,Matt Beebe,matt-beebe,R,2,,TRUE,,,00067964,,477,634
+Texas House,tx-house,13,121,Joe,,Straus,,Joe Straus,joe-straus,R,2,TRUE,TRUE,,,00019498,00056637,478,635
+Texas House,tx-house,13,122,James,,Holland,,James Holland,james-holland,L,3,,TRUE,,,00069911,,480,636
+Texas House,tx-house,13,122,Lyle,,Larson,,Lyle Larson,lyle-larson,R,2,TRUE,TRUE,,,00025726,,481,637
+Texas House,tx-house,13,123,Mike,,Villarreal,,Mike Villarreal,mike-villarreal,D,1,TRUE,TRUE,,,00040281,,482,638
+Texas House,tx-house,13,123,Frank,,Valdez,,Frank Valdez,frank-valdez,G,4,,TRUE,,,00069857,,483,639
+Texas House,tx-house,13,124,José,,Menéndez,,José Menéndez,jose-menendez,D,1,TRUE,TRUE,,,00042411,,484,640
+Texas House,tx-house,13,125,Justin,,Rodriguez,,Justin Rodriguez,justin-rodriguez,D,1,TRUE,TRUE,,,00067615,,485,641
+Texas House,tx-house,13,125,Daniel,,Behrman,,Daniel Behrman,daniel-behrman,L,3,,TRUE,,,00069912,,486,642
+Texas House,tx-house,13,126,Cris,,Hernandez,,Cris Hernandez,cris-hernandez,L,3,,TRUE,,,00069913,,487,643
+Texas House,tx-house,13,126,Patricia,,Harless,,Patricia Harless,patricia-harless,R,2,TRUE,TRUE,,,00037927,,488,644
+Texas House,tx-house,13,127,Dan,,Huberty,,Dan Huberty,dan-huberty,R,2,TRUE,TRUE,,,00065889,00067083,489,645
+Texas House,tx-house,13,128,Ken,,Lowder,,Ken Lowder,ken-lowder,L,3,,TRUE,,,00069914,,491,646
+Texas House,tx-house,13,128,Wayne,,Smith,,Wayne Smith,wayne-smith,R,2,TRUE,TRUE,,,00051506,,492,647
+Texas House,tx-house,13,129,John,,Gay,,John Gay,john-gay,D,1,,TRUE,,,00069592,,493,648
+Texas House,tx-house,13,129,Sheryl,,Berg,,Sheryl Berg,sheryl-berg,R,2,,TRUE,,,00069476,,494,649
+Texas House,tx-house,13,129,Briscoe,,Cain,,Briscoe Cain,briscoe-cain,R,2,,TRUE,,,00069218,,495,650
+Texas House,tx-house,13,129,Mary,,Huls,,Mary Huls,mary-huls,R,2,,TRUE,,,00065798,00069577,496,651
+Texas House,tx-house,13,129,Jeff,,Larson,,Jeff Larson,jeff-larson,R,2,,TRUE,,,00069526,,498,652
+Texas House,tx-house,13,129,Chuck,,Maricle,,Chuck Maricle,chuck-maricle,R,2,,TRUE,,,00069749,,499,653
+Texas House,tx-house,13,129,Dennis,,Paul,,Dennis Paul,dennis-paul,R,2,,TRUE,,,00069502,,500,654
+Texas House,tx-house,13,129,Brent,,Perry,,Brent Perry,brent-perry,R,2,,TRUE,,,00069568,,501,655
+Texas House,tx-house,13,130,Art,,Browning,,Art Browning,art-browning,G,4,,TRUE,,,00055025,,502,656
+Texas House,tx-house,13,130,Allen,,Fletcher,,Allen Fletcher,allen-fletcher,R,2,TRUE,TRUE,,,00062344,,503,657
+Texas House,tx-house,13,131,Alma,A.,Allen,,Alma A. Allen,alma-allen,D,1,TRUE,TRUE,,,00019673,,504,658
+Texas House,tx-house,13,131,Azuwuike,,Okorafor,,Azuwuike Okorafor,azuwuike-okorafor,D,1,,TRUE,,,00069746,,505,659
+Texas House,tx-house,13,132,Luis,,Lopez,,Luis Lopez,luis-lopez,D,1,,TRUE,,,00069764,,506,660
+Texas House,tx-house,13,132,Michael,,Franks,,Michael Franks,michael-franks,R,2,,TRUE,,,00037080,,507,661
+Texas House,tx-house,13,132,Ann,,Hodge,,Ann Hodge,ann-hodge,R,2,,TRUE,,,00013360,,508,662
+Texas House,tx-house,13,132,Justin,D.,Perryman,,Justin D. Perryman,justin-perryman,R,2,,TRUE,,,00055984,,509,663
+Texas House,tx-house,13,132,Mike,,Schofield,,Mike Schofield,mike-schofield,R,2,,TRUE,,,00057835,,510,664
+Texas House,tx-house,13,133,Laura,,Nicol,,Laura Nicol,laura-nicol,D,1,,TRUE,,,00069665,,511,665
+Texas House,tx-house,13,133,Jim,,Murphy,,Jim Murphy,jim-murphy,R,2,TRUE,TRUE,,,00024733,00051606,512,666
+Texas House,tx-house,13,134,Alison,,Ruff,,Alison Ruff,alison-ruff,D,1,,TRUE,,,00069761,,514,667
+Texas House,tx-house,13,134,Sarah,,Davis,,Sarah Davis,sarah-davis,R,2,TRUE,TRUE,,,00066272,,515,668
+Texas House,tx-house,13,134,Bonnie,,Parker,,Bonnie Parker,bonnie-parker,R,2,,TRUE,,,00066393,,516,669
+Texas House,tx-house,13,135,Moiz,,Abbas,,Moiz Abbas,moiz-abbas,D,1,,TRUE,,,00069722,,517,670
+Texas House,tx-house,13,135,Gary,,Elkins,,Gary Elkins,gary-elkins,R,2,TRUE,TRUE,,,00026729,,518,671
+Texas House,tx-house,13,136,John,H.,Bucy,III,John H. Bucy III,john-h-bucy-iii,D,1,,TRUE,,,00069589,,519,672
+Texas House,tx-house,13,136,Justin,,Billiot,,Justin Billiot,justin-billiot,L,3,,TRUE,,,00069915,,520,673
+Texas House,tx-house,13,136,Tony,,Dale,,Tony Dale,tony-dale,R,2,TRUE,TRUE,,,00058331,,521,674
+Texas House,tx-house,13,137,Gene,,Wu,,Gene Wu,gene-wu,D,1,TRUE,TRUE,,,00068103,,522,675
+Texas House,tx-house,13,137,Morad,H.,Fiki,,Morad H. Fiki,morad-h-fiki,R,2,,TRUE,,,00069456,,523,676
+Texas House,tx-house,13,138,Fred,R.,Vernon,,Fred R. Vernon,fred-r-vernon,D,1,,TRUE,,,00069763,,524,677
+Texas House,tx-house,13,138,Frank,,Cansella,,Frank Cansella,frank-cansella,L,3,,TRUE,,,00069916,,525,678
+Texas House,tx-house,13,138,Dwayne,,Bohac,,Dwayne Bohac,dwayne-bohac,R,2,TRUE,TRUE,,,00032585,,526,679
+Texas House,tx-house,13,139,Sylvester,,Turner,,Sylvester Turner,sylvester-turner,D,1,TRUE,TRUE,,,00020872,,527,680
+Texas House,tx-house,13,140,Armando,Lucio,Walle,,Armando Lucio Walle,armando-walle,D,1,TRUE,TRUE,,,00062108,,528,681
+Texas House,tx-house,13,141,Senfronia,,Thompson,,Senfronia Thompson,senfronia-thompson,D,1,TRUE,TRUE,,,00020791,,529,682
+Texas House,tx-house,13,142,Harold,V.,Dutton,Jr.,Harold V. Dutton Jr.,harold-dutton-jr,D,1,TRUE,TRUE,,,00021133,,530,683
+Texas House,tx-house,13,143,Ana,,Hernandez,,Ana Hernandez,ana-hernandez,D,1,TRUE,TRUE,,,00057411,,531,684
+Texas House,tx-house,13,144,Mary,Ann,Perez,,Mary Ann Perez,mary-ann-perez,D,1,TRUE,TRUE,,,00068026,,532,685
+Texas House,tx-house,13,144,Gilbert,,Peña,,Gilbert Peña,gilbert-pena,R,2,,TRUE,,,00058277,,533,686
+Texas House,tx-house,13,145,Carol,,Alvarado,,Carol Alvarado,carol-alvarado,D,1,TRUE,TRUE,,,00024376,,534,687
+Texas House,tx-house,13,145,Susan,,Delgado,,Susan Delgado,susan-delgado,D,1,,TRUE,,,00056011,,535,688
+Texas House,tx-house,13,146,Borris,L.,Miles,,Borris L. Miles,borris-miles,D,1,TRUE,TRUE,,,00052983,,536,690
+Texas House,tx-house,13,146,Morgan,,Bradford,,Morgan Bradford,morgan-bradford,G,4,,TRUE,,,00069871,,537,691
+Texas House,tx-house,13,147,Garnet,F.,Coleman,,Garnet F. Coleman,garnet-coleman,D,1,TRUE,TRUE,,,00019980,,538,692
+Texas House,tx-house,13,148,Jessica,Cristina,Farrar,,Jessica Cristina Farrar,jessica-farrar,D,1,TRUE,TRUE,,,00026313,,539,693
+Texas House,tx-house,13,148,Chris,,Carmona,,Chris Carmona,chris-carmona,R,2,,TRUE,,,00069682,,540,694
+Texas House,tx-house,13,149,Hubert,,Vo,,Hubert Vo,hubert-vo,D,1,TRUE,TRUE,,,00054795,,541,695
+Texas House,tx-house,13,149,Nghi,T.,Ho,,Nghi T. Ho,nghi-t-ho,R,2,,TRUE,,,00069786,,542,696
+Texas House,tx-house,13,149,Al,,Hoang,,Al Hoang,al-hoang,R,2,,TRUE,,,00063357,,543,697
+Texas House,tx-house,13,150,Amy,,Perez,,Amy Perez,amy-perez,D,1,,TRUE,,,00069745,,544,698
+Texas House,tx-house,13,150,Tony,,Noun,,Tony Noun,tony-noun,R,2,,TRUE,,,00069230,,545,699
+Texas House,tx-house,13,150,Debbie,,Riddle,,Debbie Riddle,debbie-riddle,R,2,TRUE,TRUE,,,00051296,,546,700
