@@ -177,7 +177,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        'tx_elections': {
+        'tx_tecreports': {
             'level': os.environ.get('LOGGING_LEVEL', 'INFO'),
             'handlers': ['console', ],
             'propagate': False,
