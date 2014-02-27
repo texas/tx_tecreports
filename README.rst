@@ -42,7 +42,7 @@ Now you can interact with the various data in the cover element via
 .. code:: python
 
     >>> report.cover.type_of_filing
-    'COH-SS'
+    u'COH-SS'
     >>> report.cover.is_original
     True
     >>> report.cover.through_date - report.cover.from_date
@@ -54,7 +54,7 @@ the filer_type is a `IND`:
 .. code:: python
 
     >>> report.cover.filer.filer_type
-    'IND'
+    u'IND'
 
 The really interesting data is in the ``receipts`` property, a list
 of all of the contributions received in this report.  For example,
